@@ -3,55 +3,44 @@
     <a-menu
       mode="inline"
       theme="dark"
-      :inline-collapsed="collapsed"
-      v-model:openKeys="openKeys"
-      v-model:selectedKeys="selectedKeys"
+      :inline-collapsed="state.collapsed"
+      v-model:openKeys="state.openKeys"
+      v-model:selectedKeys="state.selectedKeys"
     >
-      <a-menu-item key="1">
+      <!-- <a-menu-item key="1">
         <template #icon>
           <PieChartOutlined />
         </template>
-        <span>Option 1</span>
+        <span>菜单 1</span>
       </a-menu-item>
       <a-menu-item key="2">
         <template #icon>
           <DesktopOutlined />
         </template>
-        <span>Option 2</span>
+        <span>菜单 2</span>
       </a-menu-item>
       <a-menu-item key="3">
         <template #icon>
           <InboxOutlined />
         </template>
-        <span>Option 3</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #icon>
-          <MailOutlined />
-        </template>
-        <template #title>Navigation One</template>
-        <a-menu-item key="5">Option 5</a-menu-item>
-        <a-menu-item key="6">Option 6</a-menu-item>
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #icon>
-          <AppstoreOutlined />
-        </template>
-        <template #title>Navigation Two</template>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
-          <a-menu-item key="11">Option 11</a-menu-item>
-          <a-menu-item key="12">Option 12</a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
+        <span>菜单 3</span>
+      </a-menu-item>-->
+      <template v-for="item in menuData" :key="item.name">
+        <itemMenu
+          v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
+          :menuInfo="item"
+        />
+        <subMenu
+          v-if="item.children && item.children.length > 0"
+          :itemChildren="item"
+          :subKey="item.name"
+        />
+      </template>
     </a-menu>
   </div>
 </template>
-<script lang="ts">
-import { defineComponent, reactive, toRefs, watch } from 'vue';
+<script lang="ts" setup>
+import { defineComponent, reactive, ref, toRefs, watch } from 'vue';
 import {
   PieChartOutlined,
   MailOutlined,
@@ -59,37 +48,29 @@ import {
   InboxOutlined,
   AppstoreOutlined,
 } from '@ant-design/icons-vue';
-export default defineComponent({
-  setup() {
-    const state = reactive({
-      collapsed: false,
-      selectedKeys: ['1'],
-      openKeys: [],
-      preOpenKeys: [],
-    });
-    watch(
-      () => state.openKeys,
-      (val, oldVal) => {
-        state.preOpenKeys = oldVal;
-      },
-    );
-    const toggleCollapsed = () => {
-      state.collapsed = !state.collapsed;
-      state.openKeys = state.collapsed ? [] : state.preOpenKeys;
-    };
+import subMenu from './components/subMenu.vue'
+import itemMenu from './components/menuItem.vue'
+import { routes } from '../../../type'
 
-    return {
-      ...toRefs(state),
-      toggleCollapsed,
-    };
-  },
-  components: {
-    PieChartOutlined,
-    MailOutlined,
-    DesktopOutlined,
-    InboxOutlined,
-    AppstoreOutlined,
-  },
+const state = reactive({
+  collapsed: false,
+  selectedKeys: ['1'],//默认选择的菜单
+  openKeys: [],//默认展开的菜单 节点包含二级或者多级的时候
+  preOpenKeys: [],
 });
+watch(
+  () => state.openKeys,
+  (val, oldVal) => {
+    console.log('oldVal', oldVal);
+
+    state.preOpenKeys = oldVal as [];
+  },
+);
+const toggleCollapsed = () => {
+  state.collapsed = !state.collapsed;
+  state.openKeys = state.collapsed ? [] : state.preOpenKeys;
+};
+const menuData = ref(routes)
+console.log(routes);
 </script>
 
