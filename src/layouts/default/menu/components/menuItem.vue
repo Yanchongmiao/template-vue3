@@ -1,12 +1,10 @@
 <template>
-  <div>
-    <a-menu-item :key="menyItem.name">
-      <template #icon>
-        <InboxOutlined />
-      </template>
-      <span>{{ menyItem.name }}</span>
-    </a-menu-item>
-  </div>
+  <a-menu-item :key="menyItem.name">
+    <template #icon>
+      <InboxOutlined />
+    </template>
+    <span>{{ menyItem.name }}</span>
+  </a-menu-item>
 </template>
 <script setup lang="ts">import { reactive, ref } from 'vue';
 import { Menu } from '../../../../type';

@@ -5,15 +5,6 @@
     </template>
     <template #title>{{ itemChildren.name }}</template>
     <template v-for="item in itemChildren.children" :key="item.name">
-      <!-- <a-menu-item
-        v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
-        :key="item.name"
-      >
-        <template #icon>
-          <InboxOutlined />
-        </template>
-        <span>{{ item.name }}</span>
-      </a-menu-item>-->
       <itemMenu
         v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
         :menuInfo="item"

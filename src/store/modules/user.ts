@@ -1,24 +1,44 @@
 const module = {
   namespaced: true, // 命名空间
   state: {
-    cityId: 310100,
-    cityName: '上海'
+    routes: [
+      {
+        name: '菜单1',
+        path: '',
+      },
+      {
+        name: '菜单2',
+        hideMenu: true,
+        path: '',
+      },
+      {
+        name: '菜单3',
+        path: '',
+        children: [
+          {
+            name: '菜单3-1',
+            path: '',
+            hideMenu: false
+          },
+          {
+            name: '菜单3-2',
+            path: '',
+            hideMenu: true
+          },
+          {
+            name: '菜单3-3',
+            path: '',
+          },
+        ]
+      }
+    ]
   },
   mutations: {
-    mtt() {
-      console.log('tt方法，子模块里的mutations方法');
+    setRoutes(state: { routes: [] }, value: []) {
+      state.routes = value
     }
   },
-  actions: {
-    tt() {
-      console.log('tt方法，子模块里的actions方法');
-    }
-  },
-  getters: {
-    get() {
-      console.log('子get');
-
-    },
-  }
+  actions: {},
+  getters: {}
 }
 export default module

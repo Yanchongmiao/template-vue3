@@ -71,6 +71,6 @@ const toggleCollapsed = () => {
   state.openKeys = state.collapsed ? [] : state.preOpenKeys;
 };
 const menuData = ref(routes)
-console.log(routes);
+// console.log('路由', routes);
 </script>
 

@@ -32,6 +32,8 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
 import { mapState, useStore, mapActions } from 'vuex'
+import { get } from '/@/http/method'
+get()
 // useStore().dispatch('us/tt')
 // useStore().getters['user/get']
 
