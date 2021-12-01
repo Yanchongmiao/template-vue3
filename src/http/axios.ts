@@ -28,7 +28,6 @@ export class Vaxios {
       let { joinTime, withToken, ignoreRequest }: any = request.requestOptions //读取自定义配置
       joinTime && await this.setJoinTime(request)//是否添加请求时间字段
       withToken && await !filterRequestUrl.includes(request.url as string) && await this.setToken(request)//添加token
-      console.log(withToken);
       this.removePending(request, ignoreRequest)//查询历史请中是否包含和本次请求一致 一致则cancel
       this.setCancel(request, ignoreRequest)//设置cancel
       return request
@@ -163,8 +162,6 @@ export class Vaxios {
   可以灵活配置是否传递token 请求中配置项可以设置 同时也可以在config总配置哪些url不需要携带token
 **/
   async setToken(request: any) {
-    console.log('11');
-
     request.headers.token = 'set token'
   }
   /**
