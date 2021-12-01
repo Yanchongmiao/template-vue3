@@ -1,6 +1,6 @@
 // pending: Array < PendingType > =[]
 import { ref, toRaw } from 'vue';
-import { PendingType } from '../../h/type'
+import { PendingType } from '../../http/type'
 import { createErrorMsg } from '../../utils/message';
 interface removeSingle {
   msg: Object,

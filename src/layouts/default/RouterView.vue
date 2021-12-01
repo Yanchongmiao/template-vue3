@@ -33,15 +33,6 @@ import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
 import { mapState, useStore, mapActions } from 'vuex'
 import { http } from '../../http'
-
-// 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-// http.get('/tes', { d: 111 }, { headers: { t: 1 }, requestOptions: { joinTime: false } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
-// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
 const collapsed = ref<boolean>(false)//控制菜单是否展开
 </script>
 

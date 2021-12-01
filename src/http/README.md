@@ -1,6 +1,6 @@
-# Admin
+# Admin/axios
 
-当前最新版本： 1.0.0（发布日期：2021-12-10）
+当前最新版本： 1.0.0（发布日期：2021-12-1）
 
 ## Overview
 
@@ -8,22 +8,24 @@
 
 #### 文件目录 src/HTTP
 
-- 1.1 axios.ts 实现封装逻辑
-  1.2 index.ts 导出的 http 实例 包括默认的一些配置
-  1.3 type.ts interface 一些定义
+1. axios.ts 实现封装逻辑
+2. index.ts 导出的 http 实例 包括默认的一些配置
+3. type.ts interface 一些定义
 
 ## 功能
 
-配置项均可以在请求在覆盖
--1 headers 内 Content-Type 类型在 utils/enum[ContentTypeEnum] 已定义 需要的时候 ContentTypeEnum.JSON 取对应的就可以
--2 requestOptions 自定义配置项
+1. 配置项均可以在请求在覆盖
+2. headers 内 Content-Type 类型在 utils/enum[ContentTypeEnum] 已定义 需要的时候 ContentTypeEnum.JSON 取对应的就可以
+3. requestOptions 自定义配置项
 
-````isReturnNativeResponse 请求成功后是否返回未处理的 Response 默认 false
-```errorMessageModal 请求失败时对错误信息提示 可选项 msg modal none
-```joinTime 是否加入时间戳 默认字段 time
-```ignoreRequest 是否忽略重复请求
-```ignoreMsg 如果有重复的请求 默认 cancel(ignoreMsg) 提示信息
-```withToken 是否携带 token
+#### requestOptions 配置项
+
+- isReturnNativeResponse 请求成功后是否返回未处理的 Response 默认 false
+- errorMessageModal 请求失败时对错误信息提示 可选项 msg modal none
+- joinTime 是否加入时间戳 默认字段 time
+- ignoreRequest 是否忽略重复请求
+- ignoreMsg 如果有重复的请求 默认 cancel(ignoreMsg) 提示信息
+- withToken 是否携带 token
 
 ````
 
@@ -83,14 +85,5 @@ success: false
 ## 备注
 1.忽略重复请求判断的是 url 请求方式 data params 假如列表接口————点击第一页时在 pending 中，这时点击第二页，理应应该取消第一页的 这时候判断的话就不是一个重复请求 实际业务中是重复了 可以用 loading 解决 但不是很完美
 2.支持性不是太多，如果有其他需求可以继续封装
->
-
 ```
-
-```
-
-```
-
-```
-
-```
+````

@@ -4,7 +4,7 @@ import './style'
 import { setRoute } from './router';
 import Antd from 'ant-design-vue';
 import { setupStore } from './store';
-import { http } from './h';
+import { http } from './http';
 import { AxiosErrorTip, ContentTypeEnum } from './utils/enum';
 import './assets/icons/iconfont.js'
 import { store } from './store/index'
