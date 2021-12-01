@@ -46,10 +46,14 @@ module.exports = {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://192.168.99.223:3000',   //代理接口
+        target: 'http://localhost:3001',   //代理接口
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
-      }
+      },
+      '/news': {
+        target: 'http://poetry.apiopen.top',   //代理接口
+        changeOrigin: true,
+      },
     }
   }
 }

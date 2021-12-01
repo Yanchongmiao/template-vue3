@@ -8,16 +8,21 @@ for (const key in files) {
     modules[key.replace(/(\.\/|\.ts)/g, '').replace('modules/', '')] = files[key].default
   }
 }
-const store = createStore({
+export const store = createStore({
   state: {
     tit: '11'
   },
   mutations: {},
   actions: {},
-  getters: {},
+  getters: {
+    sd() {
+      console.log(12);
+
+    }
+  },
   modules: modules
 })
 export const setupStore = (app: App<Element>) => {
-  console.log('%cVuex已启动', 'color:powderblue');
+  console.log('%cVuex已开启', 'color:powderblue');
   app.use(store)
 }

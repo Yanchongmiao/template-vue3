@@ -31,3 +31,10 @@ export enum ContentTypeEnum {
   // form-data  upload
   FORM_DATA = 'multipart/form-data;charset=UTF-8',
 }
+export enum AxiosErrorTip {
+  MESSAGE = 'MESSAGE',
+  MODAL = 'MODAL',
+  NONE = 'NONE'
+}
+// 如果有重复提示信息
+export const ignoreTip: string = '请求重复,请稍后重试'

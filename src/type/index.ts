@@ -4,15 +4,6 @@ export type Component<T = any> =
   | ReturnType<typeof defineComponent>
   | (() => Promise<typeof import('*.vue')>)
   | (() => Promise<T>);
-
-// export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
-//   name: string;
-//   meta: RouteMeta;
-//   component?: Component | string;
-//   components?: Component;
-//   children?: AppRouteRecordRaw[];
-//   fullPath?: string;
-// }
 export interface Menu {
   name: string;
   path: string;
@@ -58,3 +49,24 @@ export let routes: Menu[] = [
     ]
   }
 ]
+// 错误消息 msg类型
+export interface MsgOptions {
+  title: string,
+  content: string,
+  iconClass?: string
+  time?: number,
+  color?: string
+  key?: string,
+  position?: 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight'
+}
+// 错误消息 modal类型
+export interface MsgModalOptions {
+  title: string,
+  content: string,
+  iconClass?: string,//状态icon
+  ok?: Function,
+  mask?: boolean,//是否展示遮罩 
+  maskClosable?: boolean,//点击蒙层是否允许关闭
+  keyboard?: boolean,// esc 关闭
+  okText?: string
+}

@@ -1,10 +1,16 @@
-import { createApp } from 'vue'
+import { createApp, nextTick, toRaw } from 'vue'
 import App from './App.vue'
 import './style'
 import { setRoute } from './router';
 import Antd from 'ant-design-vue';
 import { setupStore } from './store';
-// import { setMock } from './mock'
+import { http } from './h';
+import { AxiosErrorTip, ContentTypeEnum } from './utils/enum';
+import './assets/icons/iconfont.js'
+import { store } from './store/index'
+import axios from 'axios';
+import { uuid } from './utils/utils';
+
 function bootstrap() {
     const app = createApp(App);
     setRoute(app)
@@ -13,4 +19,24 @@ function bootstrap() {
     app.use(Antd)
     app.mount('#app')
 } bootstrap()
-// console.log(import.meta.env);
+let id = uuid()
+http.get('/api/json', { d: '11111adasdasd' }, { timeout: 10010, headers: { 'Content-Type': ContentTypeEnum.JSON, id: '112122233' }, requestOptions: { joinTime: true, withToken: true, errorMessageModal: AxiosErrorTip.MODAL, isReturnNativeResponse: false, ignoreRequest: false, id: id } }).then(res => {
+    console.log('res', res);
+}, e => {
+    console.log('失败1', e);
+
+})
+http.get('/api/json', { d: '11111adasdasd' }, { timeout: 10010, headers: { 'Content-Type': ContentTypeEnum.JSON, id: '112122233' }, requestOptions: { joinTime: true, withToken: true, errorMessageModal: AxiosErrorTip.MODAL, isReturnNativeResponse: false, ignoreRequest: true, } }).then(res => {
+    console.log('res', res);
+}, e => {
+    console.log('失败1', e);
+
+})
+// let time = setTimeout(() => {
+//     store.commit('axiosRequest/cancelSingle', { id: id, msg: '自定义取消11' })
+//     clearTimeout(time)
+// }, 0);
+
+// console.log(store.getters['axiosRequest/getPending']);
+
+

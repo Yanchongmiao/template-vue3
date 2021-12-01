@@ -1,5 +1,5 @@
 <template>
-	<a-layout>
+	<a-layout v-if="false">
 		<a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
 			<div class="logo flex flex-a-c">
 				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
@@ -32,12 +32,16 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
 import { mapState, useStore, mapActions } from 'vuex'
-import { get } from '/@/http/method'
-get()
-// useStore().dispatch('us/tt')
-// useStore().getters['user/get']
+import { http } from '../../http'
 
-
+// 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+// http.get('/tes', { d: 111 }, { headers: { t: 1 }, requestOptions: { joinTime: false } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
+// http.get('/tes', { d: 111 }, { timeout: 1000, requestOptions: { cancelToken: true } })
 const collapsed = ref<boolean>(false)//控制菜单是否展开
 </script>
 
