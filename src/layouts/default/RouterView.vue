@@ -1,11 +1,11 @@
 <template>
-	<a-layout v-if="false">
+	<a-layout>
 		<a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
 			<div class="logo flex flex-a-c">
 				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
 				<transition name="container">
 					<p v-if="!collapsed" class="h100 flex1 flex flex-a-c text-white">
-						<b>FyAdmin</b>
+						<b>--Admin</b>
 					</p>
 				</transition>
 			</div>

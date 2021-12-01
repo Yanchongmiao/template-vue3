@@ -4,6 +4,9 @@ import { AxiosErrorTip } from "../utils/enum";
 import { PendingType, RequestOptions, ErrorInfo, } from "./type";
 import { createErrorModal, createErrorMsg } from "../utils/message";
 import { store } from '../store/index'
+interface dataObj {
+  [key: string]: Object
+}
 export class Vaxios {
   AxiosInstance: AxiosInstance
   options: RequestOptions
@@ -176,19 +179,19 @@ export class Vaxios {
       request.data ? request.data['time'] = Date.now() : request.data = { time: Date.now() }
     }
   }
-  get<T = any>(url: string, params?: {}, config?: RequestOptions) {
+  get<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.get(url, { params, ...config })
   }
-  post<T = any>(url: string, params?: {}, config?: RequestOptions) {
+  post<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.post(url, params, { headers: { ...config?.headers } })
   }
-  delete<T = any>(url: string, params?: {}, config?: RequestOptions) {
+  delete<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.delete(url, { params, headers: { ...config?.headers } })
   }
-  put<T = any>(url: string, params?: {}, config?: RequestOptions) {
+  put<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.put(url, params, { headers: { ...config?.headers } })
   }
-  patch<T = any>(url: string, params?: {}, config?: RequestOptions) {
+  patch<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.patch(url, params, { headers: { ...config?.headers } })
   }
 }

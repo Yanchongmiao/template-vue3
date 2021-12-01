@@ -8,7 +8,7 @@ const router = createRouter({
             path: '/login',
             name: 'login',
             // redirect: '/login',
-            component: () => import('../layouts/default/RouterView.vue'),
+            component: () => import('../views/login/index.vue'),
             meta: {
                 icon: 'ion:grid-outline',
                 title: '登录',
@@ -39,4 +39,8 @@ export function setRoute(app: App<Element>) {
     app.use(router)
     console.log('%cRouter已启动', 'color:powderblue');
 }
+router.beforeEach((to, from) => {
+    // console.log(to, from);
+
+})
 // vuex-persistedstate 数据丢失
