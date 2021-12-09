@@ -21,11 +21,15 @@
 #### requestOptions 配置项
 
 - isReturnNativeResponse 请求成功后是否返回未处理的 Response 默认 false
-- errorMessageModal 请求失败时对错误信息提示 可选项 msg modal none
-- joinTime 是否加入时间戳 默认字段 time
-- ignoreRequest 是否忽略重复请求
-- ignoreMsg 如果有重复的请求 默认 cancel(ignoreMsg) 提示信息
-- withToken 是否携带 token
+- errorMessageModal 请求失败时对错误信息提示 可选项 msg modal none 默认 msg
+- joinTime 是否加入时间戳 默认字段 time 默认加入
+- ignoreRequest 是否忽略重复请求 默认忽略重复请求
+- ignoreMsg 如果有重复的请求 默认 cancel(ignoreMsg) 提示信息 默认提示文字 请求重复,请稍后重试
+- withToken 是否携带 token 默认带 优先从 pinia 中获取在从 local 取
+- isInterval 是否开启重试 默认不开启
+- count 重试次数 默认 3 次
+- interval 重试间隔 默认 1500ms
+- config 中 RETRY_COUNTCODE 可以配置哪些状态码直接重试不需要单独设置
 
 ````
 

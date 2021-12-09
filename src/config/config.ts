@@ -3,14 +3,14 @@
  */
 export const RETRY: Boolean = true
 /**
- * @retryErrorCode:  请求异常时，哪些状态码可以重试
+ * @retryErrorCode:  请求异常时，哪些状态码可以直接重试不需要在配置是否重试重试次数等
  * @ params [401, 404,500]
  */
-export const RETRY_COUNTCODE: Array<Number> = [401, 404]
+export const RETRY_COUNTCODE: Array<Number> = [401,]
 /**
  * @retryErrorCode:  请求异常时，重试次数
  */
-export const RETRY_COUNT: number = 1
+export const RETRY_COUNT: number = 3
 /**
  * @retryErrorCode:  请求异常时，重试间隔时间
  */

@@ -10,20 +10,16 @@ import './assets/icons/iconfont.js'
 import { store } from './store/index'
 import axios from 'axios';
 import { uuid } from './utils/utils';
-
+import { createPinia } from 'pinia' // 从pinia中导入createPinia方法
+import { setopPinia } from './pinia';
 function bootstrap() {
     const app = createApp(App);
     setRoute(app)
+    setopPinia(app)
     setupStore(app)
     // setMock(app)
     app.use(Antd)
     app.mount('#app')
 } bootstrap()
-// let time = setTimeout(() => {
-//     store.commit('axiosRequest/cancelSingle', { id: id, msg: '自定义取消11' })
-//     clearTimeout(time)
-// }, 0);
-
-// console.log(store.getters['axiosRequest/getPending']);
 
 

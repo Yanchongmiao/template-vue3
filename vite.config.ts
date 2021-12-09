@@ -1,10 +1,7 @@
 import { defineConfig } from "vite";
-import { resolve } from "path";
+import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import { viteMockServe } from "vite-plugin-mock";
-function pathResolve(dir) {
-  return resolve(__dirname, ".", dir);
-}
 module.exports = {
   base: "",
   plugins: [
@@ -22,9 +19,17 @@ module.exports = {
       supportTs: true //打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件
     })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "./src/assets/style/main.scss";'
+      }
+    }
+  },
   resolve: {
     alias: {
-      "/@": pathResolve("src"),
+      // "@": pathResolve("src"),
+      '@': path.resolve(__dirname, 'src'),
     }
   },
   optimizeDeps: {
@@ -57,32 +62,3 @@ module.exports = {
     }
   }
 }
-// export default defineConfig({
-//     base: "",
-//     plugins:[vue()],
-//     resolve: {
-//         alias: {
-//           "/@": pathResolve("src"),
-//         }
-//     },
-//     optimizeDeps: {
-//         include: ['axios'],
-//     },
-//     build: {
-//       target: 'modules',
-//       outDir: 'dist',
-//       assetsDir: 'assets',
-//       minify: 'terser' // 混淆器
-//     },
-//     server: {
-//         open: true,
-//         port:8080,
-//         proxy: {
-//           '/api': {
-//               target: 'http://192.168.99.223:3000',   //代理接口
-//               changeOrigin: true,
-//               rewrite: (path) => path.replace(/^\/api/, '')
-//           }
-//         }
-//     }
-// });

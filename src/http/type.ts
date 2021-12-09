@@ -24,6 +24,12 @@ export interface RequestCustom {
   withToken?: boolean,
   //查找某条请求时根据id查找
   id?: string,
+  // 是否重试
+  isInterval?: boolean,
+  // 重试次数
+  count?: number,
+  // 重试间隔
+  interval?: number,
 }
 // 基础配置项+自定义配置项 requestOptions
 export interface RequestOptions extends AxiosRequestConfig {

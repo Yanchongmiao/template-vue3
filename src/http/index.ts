@@ -1,3 +1,4 @@
+import { RETRY_COUNT, RETRY_INTERVAL } from "@/config/config";
 import { AxiosErrorTip, ContentTypeEnum, ignoreTip } from "../utils/enum";
 import { Vaxios } from "./axios";
 import { configForm, RequestOptions } from "./type";
@@ -29,6 +30,12 @@ let data: RequestOptions = {
     ignoreRequest: true,
     // 是否携带token
     withToken: true,
+    // 重试次数
+    count: RETRY_COUNT,
+    // 重试间隔
+    interval: RETRY_INTERVAL,
+    // 默认不开启错误重试
+    isInterval: false,
   },
 }
 const createHttp = (request?: RequestOptions) => {

@@ -1,9 +1,11 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from "axios";
-import { filterRequestUrl, responseErrInfo } from "../config/config";
+import { filterRequestUrl, responseErrInfo, RETRY_COUNTCODE } from "../config/config";
 import { AxiosErrorTip } from "../utils/enum";
 import { PendingType, RequestOptions, ErrorInfo, } from "./type";
 import { createErrorModal, createErrorMsg } from "../utils/message";
-import { store } from '../store/index'
+// import { store } from '../store/index'
+import { resultType } from '@/type/index'
+import { axiosRequestStore } from "@/pinia/axiosRequest";
 interface dataObj {
   [key: string]: Object
 }
@@ -60,26 +62,46 @@ export class Vaxios {
           success: false,
         }
         return Promise.reject(ignore)
-      } else if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {//判断是否是超时
-        let ignore: ErrorInfo = {
-          status: 4004,
-          statusText: '请求超时',
-          success: false,
-        }
-        createErrorMsg({ title: '系统异常', content: '请求超时' })
-        return Promise.reject(ignore)
-      } else if (error.config) {// 接口错误
-        this.tipMsg(error)
-        let result: ErrorInfo = {
-          status: error.response.status,
-          statusText: error.response.statusText,
-          success: false,
-          response: error.config.requestOptions.isReturnNativeResponse ? error.response : null
-        }
-        this.accept(error.config)
-        return Promise.reject(result)
       } else {
-        return Promise.reject(error)
+        const config = error.config;
+        const [RETRY_COUNT, RETRY_INTERVAL] = [config.requestOptions.count, config.requestOptions.interval];
+        if ((config && RETRY_COUNT && config.requestOptions.isInterval) || RETRY_COUNTCODE.includes(error.response.status)) {
+          config.retry_count = config.retry_count || 0;
+          if (config.retry_count >= RETRY_COUNT) {
+            return Promise.reject(error.response || { message: error.message })
+          }
+          config.retry_count++
+          const backSend = new Promise<void>((resolve, reject) => {
+            setTimeout(() => {
+              resolve()
+            }, RETRY_INTERVAL || 1);
+          });
+          return backSend.then(() => {
+            return this.AxiosInstance(config)
+          })
+        }
+
+        if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {//判断是否是超时
+          let ignore: ErrorInfo = {
+            status: 4004,
+            statusText: '请求超时',
+            success: false,
+          }
+          createErrorMsg({ title: '系统异常', content: '请求超时' })
+          return Promise.reject(ignore)
+        } else if (error.config) {// 接口错误
+          this.tipMsg(error)
+          let result: ErrorInfo = {
+            status: error.response.status,
+            statusText: error.response.statusText,
+            success: false,
+            response: error.config.requestOptions.isReturnNativeResponse ? error.response : null
+          }
+          this.accept(error.config)
+          return Promise.reject(result)
+        } else {
+          return Promise.reject(error)
+        }
       }
     })
   }
@@ -108,7 +130,10 @@ export class Vaxios {
 **/
   accept(config: RequestOptions) {
     let requestOptions = config.requestOptions as any
-    let pendingList: Array<PendingType> = store.getters['axiosRequest/getAllPending']
+    let useStore = axiosRequestStore()
+    // let pendingList: Array<PendingType> = store.getters['axiosRequest/getAllPending']
+    let pendingList: Array<PendingType> = useStore.getAllPending
+
     if (pendingList.length > 0) {
       for (const key in pendingList) {
         const item: number = +key;
@@ -120,27 +145,31 @@ export class Vaxios {
           JSON.stringify(list.params) === JSON.stringify(config.params) &&
           JSON.stringify(list.data) === JSON.stringify(config.data) &&
           list.url === config.url && list.ignoreRequest == requestOptions.ignoreRequest) {
-          store.commit('axiosRequest/removePending', item)
+          // store.commit('axiosRequest/removePending', item)
+          useStore.removePending(item)
         }
       }
     }
-
   }
   /**
 * @description 添加cancel
 **/
   setCancel(request: RequestOptions, ignoreRequest: Number) {
-    let pendingObj
+    let pendingObj: any
     request.cancelToken = new this.cancelToken((c: Function) => {
       pendingObj = { url: request.url as string, method: request.method as Method, params: request.params, data: request.data, cancel: c, ignoreRequest: ignoreRequest, ignoreMsg: request.requestOptions?.ignoreMsg, id: request.requestOptions?.id }
     })
-    store.commit('axiosRequest/setPending', pendingObj)
+    let useStore = axiosRequestStore()
+    useStore.setPending(pendingObj)
+    // store.commit('axiosRequest/setPending', pendingObj)
   }
   /**
 * @description 移除请求   判断正在请求中是数据是否有和本次重复
 **/
   removePending(config: RequestOptions, ignoreRequest: Number) {
-    let pendingList: Array<PendingType> = store.getters['axiosRequest/getAllPending']
+    let useStore = axiosRequestStore()
+    // let pendingList: Array<PendingType> = store.getters['axiosRequest/getAllPending']
+    let pendingList: Array<PendingType> = useStore.getAllPending
     if (pendingList.length > 0) {
       for (const key in pendingList) {
         const item: number = +key;
@@ -153,7 +182,9 @@ export class Vaxios {
           JSON.stringify(list.data) === JSON.stringify(config.data) && ignoreRequest) {
           // 执行取消操作
           list.cancel(list.ignoreMsg);
-          store.commit('axiosRequest/removePending', item)
+          // store.commit('axiosRequest/removePending', item)
+          // store.commit('axiosRequest/removePending', item)
+          useStore.removePending(item)
 
         }
       }
@@ -172,7 +203,6 @@ export class Vaxios {
 **/
   async setJoinTime(request: RequestOptions) {
     let method = (request.method as string)
-    // if (!isSet) return false
     if (['get', 'delete'].includes(method)) {
       request.params ? request.params['time'] = Date.now() : request.params = { time: Date.now() }
     } else if (['post', 'put', 'patch'].includes(method as string)) {
@@ -182,16 +212,16 @@ export class Vaxios {
   get<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
     return this.AxiosInstance.get(url, { params, ...config })
   }
-  post<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
+  post<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<resultType<T>> {
     return this.AxiosInstance.post(url, params, { headers: { ...config?.headers } })
   }
-  delete<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
+  delete<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<resultType<T>> {
     return this.AxiosInstance.delete(url, { params, headers: { ...config?.headers } })
   }
-  put<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
+  put<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<resultType<T>> {
     return this.AxiosInstance.put(url, params, { headers: { ...config?.headers } })
   }
-  patch<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<T> {
+  patch<T = any>(url: string, params?: dataObj, config?: RequestOptions): Promise<resultType<T>> {
     return this.AxiosInstance.patch(url, params, { headers: { ...config?.headers } })
   }
 }

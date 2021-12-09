@@ -70,11 +70,11 @@ export interface MsgModalOptions {
   keyboard?: boolean,// esc 关闭
   okText?: string
 }
-export interface resultType {
+export interface resultType<T = any> {
   code: number,
-  data: any,
+  data: T,
   message: string,
   success: boolean,
-  timestamp: number
+  timestamp?: number
 
 }

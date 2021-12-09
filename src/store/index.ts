@@ -9,9 +9,7 @@ for (const key in files) {
   }
 }
 export const store = createStore({
-  state: {
-    tit: '11'
-  },
+  state: {},
   mutations: {},
   actions: {},
   getters: {
