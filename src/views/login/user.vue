@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <h1>登录页面</h1>
-        <router-link to="login">用户名</router-link>-------
-        <router-link to="phone">手机号</router-link>
-        <router-view />
-        <!-- <router-link to="/d">11--{{ profileStore.userName }} --- {{ profileStore.count }}</router-link> -->
-    </div>
+  <div>
+    <br />
+    <br />
+    <br />
+    <h1>用户名登录</h1>
+    <!-- <router-link to="/d">11--{{ profileStore.userName }} --- {{ profileStore.count }}</router-link> -->
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -38,5 +38,3 @@ export const responseErrInfo: {
   503: '暂时无法处理此请求',
   505: '不支持此版本协议',
 }
-
-

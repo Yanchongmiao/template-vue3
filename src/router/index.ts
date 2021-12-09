@@ -1,41 +1,15 @@
 import { App } from '@vue/runtime-core'
-import { createRouter, createWebHistory } from 'vue-router'
-const router = createRouter({
+import { createRouter, createWebHashHistory, createWebHistory, RouteRecordName, RouteRecordRaw } from 'vue-router'
+import { createMountOldRoute, createRoutes } from './initRouters'
+export const router = createRouter({
     history: createWebHistory(),
-    routes: [
-        { path: '', redirect: to => '/login', },  // 重定向到主页
-        {
-            path: '/login',
-            name: 'login',
-            // redirect: '/login',
-            component: () => import('../views/login/index.vue'),
-            meta: {
-                icon: 'ion:grid-outline',
-                title: '登录',
-            },
-        },
-        {
-            path: '/404',
-            name: '404',
-            // redirect: '/login',
-            component: () => import('../views//error/404.vue'),
-            meta: {
-                icon: 'ion:grid-outline',
-                title: '404',
-            },
-        },
-        //404页面
-        {
-            path: '/:pathMatch(.*)*',
-            component: () => import("../views//error/404.vue"),
-            redirect: '/404'
-        },
-    ],
+    routes: [],
     scrollBehavior: () => ({ left: 0, top: 0 }),
     strict: true,
-
 })
 export function setRoute(app: App<Element>) {
+    createRoutes()//初始化路由
+    createMountOldRoute()
     app.use(router)
     console.log('%cRouter已启动', 'color:powderblue');
 }
@@ -43,4 +17,7 @@ router.beforeEach((to, from) => {
     // console.log(to, from);
 
 })
-// vuex-persistedstate 数据丢失
+/**
+ 1 固定一个首页路由 在请求完成后去判断 此路由是否存在 如果不存在 添加一个默认路由 如果存在 不处理  路由地址可动态配置
+ 2 tab 固定第一位路由首页 不可删除
+**/

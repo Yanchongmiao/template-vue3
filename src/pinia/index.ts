@@ -1,8 +1,8 @@
+import { axiosRequestStore } from "./axiosRequest";
 import { createPinia } from "pinia"
 import { App } from "vue"
-
-export const setopPinia = (app: App<Element>) => {
+import piniaPersist from 'pinia-plugin-persist'
+export const setopPinia = async (app: App<Element>) => {
   console.log('%cPinia已开启', 'color:powderblue');
-  app.use(createPinia())
-
+  app.use(createPinia().use(piniaPersist))
 }

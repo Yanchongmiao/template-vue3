@@ -5,14 +5,14 @@
 				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
 				<transition name="container">
 					<p v-if="!collapsed" class="h100 flex1 flex flex-a-c text-white">
-						<b>--Admin</b>
+						<b class="truncate ...">--Admin</b>
 					</p>
 				</transition>
 			</div>
 			<Menu />
 		</a-layout-sider>
 		<a-layout>
-			<a-layout-header style="background: #fff; padding: 0 0 0 10px">
+			<a-layout-header class="bg-white" style=" padding: 0 0 0 10px">
 				<menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
 				<menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
 			</a-layout-header>
@@ -23,7 +23,9 @@
 					background: '#fff',
 					minHeight: '280px',
 				}"
-			>Content</a-layout-content>
+			>
+				<router-view></router-view>
+			</a-layout-content>
 		</a-layout>
 	</a-layout>
 </template>
@@ -31,9 +33,9 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
-import { mapState, useStore, mapActions } from 'vuex'
 import { http } from '../../http'
 const collapsed = ref<boolean>(false)//控制菜单是否展开
+
 </script>
 
 <style lang="less">

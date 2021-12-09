@@ -121,8 +121,6 @@ export class Vaxios {
       case AxiosErrorTip.NONE://不提示
         // console.log('none');
         break;
-      default:
-        break;
     }
   }
   /**

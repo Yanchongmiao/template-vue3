@@ -6,26 +6,10 @@
       :inline-collapsed="state.collapsed"
       v-model:openKeys="state.openKeys"
       v-model:selectedKeys="state.selectedKeys"
+      @select="clickMenu"
+      @openChange="menuOpen"
     >
-      <!-- <a-menu-item key="1">
-        <template #icon>
-          <PieChartOutlined />
-        </template>
-        <span>菜单 1</span>
-      </a-menu-item>
-      <a-menu-item key="2">
-        <template #icon>
-          <DesktopOutlined />
-        </template>
-        <span>菜单 2</span>
-      </a-menu-item>
-      <a-menu-item key="3">
-        <template #icon>
-          <InboxOutlined />
-        </template>
-        <span>菜单 3</span>
-      </a-menu-item>-->
-      <template v-for="item in menuData" :key="item.name">
+      <template v-for="item in menuData" :key="item.path">
         <itemMenu
           v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
           :menuInfo="item"
@@ -33,7 +17,7 @@
         <subMenu
           v-if="item.children && item.children.length > 0"
           :itemChildren="item"
-          :subKey="item.name"
+          :subKey="item.path"
         />
       </template>
     </a-menu>
@@ -41,6 +25,7 @@
 </template>
 <script lang="ts" setup>
 import { defineComponent, reactive, ref, toRefs, watch } from 'vue';
+import { MenuItem } from 'ant-design-vue'
 import {
   PieChartOutlined,
   MailOutlined,
@@ -50,27 +35,35 @@ import {
 } from '@ant-design/icons-vue';
 import subMenu from './components/subMenu.vue'
 import itemMenu from './components/menuItem.vue'
-import { routes } from '../../../type'
+import { useProfileStore } from '@/pinia/use';
+import { useRoute, useRouter } from 'vue-router';
+import { router } from '@/router';
 
 const state = reactive({
   collapsed: false,
-  selectedKeys: ['1'],//默认选择的菜单
-  openKeys: [],//默认展开的菜单 节点包含二级或者多级的时候
-  preOpenKeys: [],
+  selectedKeys: [''],//默认选择的菜单 '/cd'
+  openKeys: [''],//默认展开的菜单 节点包含二级或者多级的时候 '/cd1', '/t11'
 });
-watch(
-  () => state.openKeys,
-  (val, oldVal) => {
-    console.log('oldVal', oldVal);
+const clickMenu = (item: any) => {
+  router.push(item.keyPath.join('/'))
+}
+const menuOpen = (openKeys: string[]) => {
+  state.openKeys = [openKeys[openKeys.length - 1]] as never
+  // console.log(state.selectedKeys, state.openKeys);
 
-    state.preOpenKeys = oldVal as [];
-  },
-);
-const toggleCollapsed = () => {
-  state.collapsed = !state.collapsed;
-  state.openKeys = state.collapsed ? [] : state.preOpenKeys;
-};
-const menuData = ref(routes)
+}
+// watch(
+//   () => state.openKeys,
+//   (val, oldVal) => {
+//     console.log('val', val, state.openKeys);
+//     state.preOpenKeys = val;
+//     state.openKeys = val;
+//   },
+// );
+// const menuData = ref(routes)
+let useMenu = useProfileStore()
+const menuData = ref(useMenu.menuData)
+
 // console.log('路由', routes);
 </script>
 

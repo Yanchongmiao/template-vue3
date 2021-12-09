@@ -36,10 +36,16 @@ module.exports = {
     include: ['axios'],
   },
   build: {
-    target: 'modules',
-    outDir: 'dist',
-    assetsDir: 'assets',
-    minify: 'terser' // 混淆器
+    // target: 'modules',
+    // outDir: 'dist',
+    // assetsDir: 'assets',
+    // minify: 'terser' // 混淆器
+
+    index: path.resolve(__dirname, '../dist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './',
+    productionSourceMap: true,
   },
   module: {
     relus: [
@@ -49,6 +55,7 @@ module.exports = {
   server: {
     open: true,
     port: 8080,
+    https: false,
     proxy: {
       '/api': {
         target: 'http://localhost:3001',   //代理接口

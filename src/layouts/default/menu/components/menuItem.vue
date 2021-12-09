@@ -1,5 +1,5 @@
 <template>
-  <a-menu-item :key="menyItem.name">
+  <a-menu-item :key="menyItem.path">
     <template #icon>
       <InboxOutlined />
     </template>

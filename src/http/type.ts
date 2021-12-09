@@ -65,5 +65,5 @@ export interface ErrorInfo {
   status: number,
   statusText: string,
   success: boolean,
-  response?: Object
+  response?: Object,
 }

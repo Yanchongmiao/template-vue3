@@ -27,3 +27,46 @@ export const uuid = (len?: number, radix?: number) => {
   }
   return uuid.join('');
 }
+/**
+ * 递归深拷贝
+**/
+export const DeepCopy = (source: any) => {
+  let target: any = {}
+  if (typeof source === 'object') {
+    target = Array.isArray(source) ? [] : {}
+    for (let key in source) {
+      if (source.hasOwnProperty(key)) {
+        if (typeof source[key] !== 'object') {
+          target[key] = source[key]
+        } else {
+          target[key] = DeepCopy(source[key])
+        }
+      }
+    }
+  } else {
+    target = source
+  }
+  return target
+}
+/**
+ * 平铺节点转换树结构
+**/
+export const flatTree = (treeArr: Array<any>) => {
+  let map: Record<string, any> = []
+  let arr = []
+  for (const key of treeArr) {
+    map[key.id] = key
+  }
+  for (const key of treeArr) {
+    if (key.parentId == 0) {
+      arr.push(key)
+    } else {
+      if (!map[key.parentId].children) {
+        map[key.parentId].children = [key]
+      } else {
+        map[key.parentId].children.push(key)
+      }
+    }
+  }
+  return arr
+}

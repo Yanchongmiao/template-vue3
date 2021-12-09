@@ -10,6 +10,7 @@ export const axiosRequestStore = defineStore({
   id: 'axiosRequest',
   state: () => ({
     pending: [] as Array<PendingType>,
+    c: 112121
   }),
   getters: {
     // 获取所有请求
@@ -20,7 +21,6 @@ export const axiosRequestStore = defineStore({
   actions: {
     setPending(value: PendingType) {
       this.pending.push(value)
-      console.log(this.pending);
     },
     // 移除单条
     removePending(item: number) {
@@ -39,5 +39,9 @@ export const axiosRequestStore = defineStore({
         })
       }
     }
-  }
+  },
+  persist: {
+    enabled: true,
+  },
 })
+

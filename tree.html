@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  let arr = [
+    { parentId: 0, id: 1, name: '节点1' },
+    { parentId: 1, id: 11, name: '节点1-1' },
+    { parentId: 11, id: 111, name: '节点1-2' },
+    { parentId: 111, id: 1111, name: '节点1-2-1' },
+    { parentId: 1111, id: 11111, name: '节点1-2-1' },
+    { parentId: 1, id: 12, name: '节点1-2' },
+    { parentId: 0, id: 2, name: '节点2' },
+    { parentId: 2, id: 21, name: '节点2-1' },
+    { parentId: 2, id: 22, name: '节点2-2' },
+    { parentId: 0, id: 3, name: '节点3' },
+    { parentId: 3, id: 31, name: '节点3-1' },
+    { parentId: 3, id: 32, name: '节点3-2' },
+    { parentId: 32, id: 321, name: '节点3-2' },
+  ];
+  let map = {}
+  let arr1 = []
+  for (const key of arr) {
+    map[key.id] = key
+  }
+  console.log(map);
+  for (const key of arr) {
+    if (key.parentId == 0) {
+      arr1.push(key)
+    } else {
+      if (!map[key.parentId].children) {
+        map[key.parentId].children = [key]
+      } else {
+        map[key.parentId].children.push(key)
+      }
+    }
+  }
+  console.log(arr1);
+  // function listToTree(arr) {
+  //   const map = {};
+  //   arr.forEach((element) => {
+  //     map[element.id] = element;
+  //   });
+  //   return arr.reduce((prev, next) => {
+  //     console.log(prev, next);
+  //     if (map[next.parentId]) {
+  //       if (map[next.parentId].children) {
+  //         map[next.parentId].children.push(next);
+  //       } else {
+  //         map[next.parentId].children = [next];
+  //       }
+  //     } else {
+  //       prev.push(next);
+  //     }
+  //     return prev;
+  //   }, []);
+  // }
+
+  // console.log(listToTree(arr));
+</script>
+
+</html>

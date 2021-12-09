@@ -86,3 +86,6 @@ select,
 textarea {
 	font-size: 100%;
 }
+.bg-white {
+	background-color: #fff !important;
+}
