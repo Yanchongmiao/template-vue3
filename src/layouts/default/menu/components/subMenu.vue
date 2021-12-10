@@ -1,5 +1,5 @@
 <template>
-  <el-sub-menu :index="subKey">
+  <el-sub-menu :index="props.subKey ? props.subKey : uuid()">
     <template #title>
       <el-icon>
         <location />
@@ -22,6 +22,9 @@
 </template>
 <script setup lang="ts">import { ref } from 'vue';
 import MenuItem from './menuItem.vue'
+// import { ElMenu, ElIcon } from 'element-plus'
+import { ElSubMenu, ElIcon } from 'element-plus'
+import { uuid } from '@/utils/utils'
 import { defineComponent, reactive, toRefs, watch } from 'vue';
 import {
   PieChartOutlined,
@@ -42,7 +45,7 @@ const props = defineProps({
 }
 )
 const itemChildren: {} = ref(props.itemChildren)
-const subKey = ref(props.subKey)
+// const subKey = ref(props.subKey)
 
 </script>
 <style lang="less">

@@ -11,6 +11,7 @@ import { reactive, ref, toRaw } from 'vue';
 import { Menu } from '../../../../type';
 import { PieChartOutlined, MailOutlined, DesktopOutlined, InboxOutlined, AppstoreOutlined } from '@ant-design/icons-vue';
 import subMenu from './components/subMenu.vue'
+import { ElMenuItem, ElIcon } from 'element-plus'
 import {
   Location,
   Document,

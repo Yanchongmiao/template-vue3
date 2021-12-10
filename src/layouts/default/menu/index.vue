@@ -20,13 +20,14 @@
         <subMenu
           v-if="item.children && item.children.length > 0"
           :itemChildren="item"
-          :subKey="item.path"
+          :subKey="item.path || '11'"
         />
       </template>
     </el-menu>
   </div>
 </template>
 <script lang="ts" setup>
+import { ElMenu } from 'element-plus'
 import { defineComponent, reactive, ref, toRefs, watch } from 'vue';
 import subMenu from './components/subMenu.vue'
 import itemMenu from './components/menuItem.vue'

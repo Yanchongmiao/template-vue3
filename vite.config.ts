@@ -2,10 +2,23 @@ import { defineConfig } from "vite";
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import { viteMockServe } from "vite-plugin-mock";
+import vitePluginImp from 'vite-plugin-imp'
 module.exports = {
   base: "",
   plugins: [
     vue(),
+    vitePluginImp({
+      libList: [
+        // {
+        //   libName: 'vant',
+        //   style(name) { return `vant/es/${name}/index.css` }
+        // },
+        {
+          libName: 'element-plus',
+          style: (name) => { return `element-plus/theme-chalk/${name}.css` }
+        }
+      ]
+    }),
     viteMockServe({
       mockPath: "./src/mock", //mock文件地址
       localEnabled: true, // 开发打包开关
@@ -17,7 +30,8 @@ module.exports = {
       `,
       logger: true, //是否在控制台显示请求日志
       supportTs: true //打开后，可以读取 ts 文件模块。 请注意，打开后将无法监视.js 文件
-    })
+    }),
+
   ],
   css: {
     preprocessorOptions: {
