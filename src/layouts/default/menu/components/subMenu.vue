@@ -1,13 +1,16 @@
 <template>
-  <a-sub-menu :key="subKey">
-    <template #icon>
-      <MailOutlined />
+  <el-sub-menu :index="subKey">
+    <template #title>
+      <el-icon>
+        <location />
+      </el-icon>
+      <span style="width:76%" class="text-hidden-nowrap">{{ itemChildren.name }}</span>
     </template>
-    <template #title>{{ itemChildren.name }}</template>
     <template v-for="item in itemChildren.children" :key="item.path">
       <MenuItem
-        v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
-        :menuInfo="item"
+        v-if="(!item.children || item.children.length == 0) && (!item.hideMenu || item.hideMenu == null)"
+        :name="item.name"
+        :path="item.path"
       />
       <subMenu
         v-if="item.children && item.children.length > 0"
@@ -15,7 +18,7 @@
         :subKey="item.path"
       />
     </template>
-  </a-sub-menu>
+  </el-sub-menu>
 </template>
 <script setup lang="ts">import { ref } from 'vue';
 import MenuItem from './menuItem.vue'
@@ -27,6 +30,12 @@ import {
   InboxOutlined,
   AppstoreOutlined,
 } from '@ant-design/icons-vue';
+import {
+  Location,
+  Document,
+  Menu as IconMenu,
+  Setting,
+} from '@element-plus/icons'
 const props = defineProps({
   itemChildren: Object,
   subKey: String

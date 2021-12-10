@@ -17,9 +17,9 @@ export const createMountOldRoute = () => {
 const getPermiss = () => {
   setTimeout(() => {
     permissions().then((res) => {
-      // 读取历史缓存
+      // 读取历史缓存路由
       let useStore = useProfileStore()
-      // 清空历史
+      // 清空旧路由
       useStore.addRoutesList.forEach((element: Menu) => {
         router.removeRoute(element.name)
       })

@@ -1,11 +1,11 @@
 <template>
 	<a-layout>
-		<a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
+		<a-layout-sider v-model:collapsed="useMenu.$state.openMenu" :trigger="null" collapsible>
 			<div class="logo flex flex-a-c">
 				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
 				<transition name="container">
-					<p v-if="!collapsed" class="h100 flex1 flex flex-a-c text-white">
-						<b class="truncate ...">--Admin</b>
+					<p v-if="!useMenu.$state.openMenu" class="h100 flex1 flex flex-a-c text-white">
+						<b class="truncate ...">{{ isOpen }}--Admin</b>
 					</p>
 				</transition>
 			</div>
@@ -13,8 +13,16 @@
 		</a-layout-sider>
 		<a-layout>
 			<a-layout-header class="bg-white" style=" padding: 0 0 0 10px">
-				<menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
-				<menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
+				<menu-unfold-outlined
+					v-if="useMenu.$state.openMenu"
+					class="trigger"
+					@click="() => (useMenu.$state.openMenu = !useMenu.$state.openMenu)"
+				/>
+				<menu-fold-outlined
+					v-else
+					class="trigger"
+					@click="() => (useMenu.$state.openMenu = !useMenu.$state.openMenu)"
+				/>
 			</a-layout-header>
 			<a-layout-content
 				:style="{
@@ -34,8 +42,11 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
 import { http } from '../../http'
-const collapsed = ref<boolean>(false)//控制菜单是否展开
-
+import { useProfileStore } from '@/pinia/use'
+let useMenu = useProfileStore()
+console.log(useMenu.$state);
+const collapsed = ref<boolean>(useMenu.$state.openMenu);//控制菜单是否展开
+const isOpen = ref<boolean>(useMenu.$state.openMenu);//是否打开
 </script>
 
 <style lang="less">

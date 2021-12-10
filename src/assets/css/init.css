@@ -89,3 +89,8 @@ textarea {
 .bg-white {
 	background-color: #fff !important;
 }
+.text-hidden-nowrap {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

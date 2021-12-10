@@ -4,18 +4,19 @@ import './style'
 import { setRoute } from './router';
 import Antd from 'ant-design-vue';
 import { setupStore } from './store';
-import { http } from './http';
-import { AxiosErrorTip, ContentTypeEnum } from './utils/enum';
 import './assets/icons/iconfont.js'
-import { store } from './store/index'
-import axios from 'axios';
-import { uuid } from './utils/utils';
-import { createPinia, Pinia } from 'pinia' // 从pinia中导入createPinia方法
 import { setopPinia } from './pinia';
-import { axiosRequestStore } from './pinia/axiosRequest';
-import { useProfileStore } from './pinia/use';
+// import 'element-plus/lib/theme-chalk/index.css'
+import 'element-plus/dist/index.css'
+import { ElButton, ElMessage, ElMenu, ElRow, ElCol, ElIcon } from 'element-plus'
 function bootstrap() {
     const app = createApp(App);
+    app.use(ElButton)
+    app.use(ElIcon)
+    app.use(ElMessage)
+    app.use(ElMenu)
+    app.use(ElRow)
+    app.use(ElCol)
     setopPinia(app)
     setupStore(app)
     setRoute(app)

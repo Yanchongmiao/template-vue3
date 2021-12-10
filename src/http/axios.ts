@@ -65,7 +65,7 @@ export class Vaxios {
       } else {
         const config = error.config;
         const [RETRY_COUNT, RETRY_INTERVAL] = [config.requestOptions.count, config.requestOptions.interval];
-        if ((config && RETRY_COUNT && config.requestOptions.isInterval) || RETRY_COUNTCODE.includes(error.response.status)) {
+        if ((config && RETRY_COUNT && config.requestOptions.isInterval) || (error.response && RETRY_COUNTCODE.includes(error.response.status))) {
           config.retry_count = config.retry_count || 0;
           if (config.retry_count >= RETRY_COUNT) {
             return Promise.reject(error.response || { message: error.message })

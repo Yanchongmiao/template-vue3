@@ -9,6 +9,7 @@ export const useProfileStore = defineStore({
     routerList: [],//路由
     permissionList: [],//权限
     addRoutesList: [],//记录动态路由
+    openMenu: false,
   }),
   getters: {
     // 获取菜单
