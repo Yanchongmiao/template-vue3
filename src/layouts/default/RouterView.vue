@@ -5,7 +5,7 @@
 				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
 				<transition name="container">
 					<p v-if="!useMenu.$state.openMenu" class="h100 flex1 flex flex-a-c text-white">
-						<b class="truncate ...">{{ isOpen }}--Admin</b>
+						<b class="truncate ...">Admin</b>
 					</p>
 				</transition>
 			</div>
@@ -44,9 +44,6 @@ import Menu from './menu/index.vue'
 import { http } from '../../http'
 import { useProfileStore } from '@/pinia/use'
 let useMenu = useProfileStore()
-console.log(useMenu.$state);
-const collapsed = ref<boolean>(useMenu.$state.openMenu);//控制菜单是否展开
-const isOpen = ref<boolean>(useMenu.$state.openMenu);//是否打开
 </script>
 
 <style lang="less">

@@ -23,7 +23,7 @@
 <script setup lang="ts">import { ref } from 'vue';
 import MenuItem from './menuItem.vue'
 // import { ElMenu, ElIcon } from 'element-plus'
-import { ElSubMenu, ElIcon } from 'element-plus'
+// import { ElSubMenu, ElIcon } from 'element-plus'
 import { uuid } from '@/utils/utils'
 import { defineComponent, reactive, toRefs, watch } from 'vue';
 import {
@@ -38,7 +38,7 @@ import {
   Document,
   Menu as IconMenu,
   Setting,
-} from '@element-plus/icons'
+} from '@element-plus/icons-vue'
 const props = defineProps({
   itemChildren: Object,
   subKey: String

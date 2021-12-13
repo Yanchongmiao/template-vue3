@@ -1,3 +1,20 @@
 <template>
-  <div>首页</div>
+  <div>
+    <div :style="{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }">
+      <a-button type="primary" ghost>Primary</a-button>
+      <a-button ghost>Default</a-button>
+      <a-button type="dashed" ghost>Dashed</a-button>
+      <a-button danger ghost>Danger</a-button>
+      <a-button type="link" ghost>Link</a-button>
+    </div>
+    <el-row>
+      <el-button>Default</el-button>
+      <el-button type="primary">Primary</el-button>
+      <el-button type="success">Success</el-button>
+      <el-button type="info">Info</el-button>
+      <el-button type="warning">Warning</el-button>
+      <el-button type="danger">Danger</el-button>
+      <el-button>中文</el-button>
+    </el-row>
+  </div>
 </template>
