@@ -10,6 +10,7 @@ export const useProfileStore = defineStore({
     permissionList: [],//权限
     addRoutesList: [],//记录动态路由
     openMenu: false,
+    menuActiveIndex: ''//当前激活menu路由
   }),
   getters: {
     // 获取菜单

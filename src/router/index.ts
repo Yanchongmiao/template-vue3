@@ -1,3 +1,4 @@
+import { useProfileStore } from '@/pinia/use'
 import { App } from '@vue/runtime-core'
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordName, RouteRecordRaw } from 'vue-router'
 import { createMountOldRoute, createRoutes } from './initRouters'
@@ -9,12 +10,14 @@ export const router = createRouter({
 })
 export function setRoute(app: App<Element>) {
     createRoutes()//初始化路由
-    createMountOldRoute()
+    createMountOldRoute()//请求信息权限
     app.use(router)
     console.log('%cRouter已启动', 'color:powderblue');
 }
 router.beforeEach((to, from) => {
-    // console.log(to, from);
+    console.log(to, from);
+    let user = useProfileStore()
+    user.$state.menuActiveIndex = to.path
 
 })
 /**

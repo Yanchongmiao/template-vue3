@@ -8,53 +8,50 @@ import { RouteRecordRaw } from 'vue-router'
 import { staticRoutes } from './config'
 import { router } from './index'
 // 初始化路由 由于路由刷新会丢失 这里是获取的旧路由信息进行挂载
-export const createMountOldRoute = () => {
+export const createMountOldRoute = async () => {
   createRoutes()//初始化路由
-
-  getPermiss()
+  setTimeout(() => {
+    getPermiss()
+  }, 500);
 }
 // 接口请求获取路由信息
 const getPermiss = () => {
-  setTimeout(() => {
-    permissions().then((res) => {
-      // 读取历史缓存路由
-      let useStore = useProfileStore()
-      // 清空旧路由
-      useStore.addRoutesList.forEach((element: Menu) => {
-        router.removeRoute(element.name)
-      })
-      // router.removeRoute('home')
-      // router.removeRoute('render')
-      // 后台数据分类
-      let routerFilter = []//路由
-      let menuFilter = []//菜单
-      let perFilter = []//权限
-      for (const key of res.data) {
-        // menuType 0是路由也是菜单 1 是路由不是菜单 2 按钮
-        if (key.meta.menuType === 0) {
-          menuFilter.push(key)
-          routerFilter.push(DeepCopy(key))
-        } else if (key.meta.menuType === 1) {
-          routerFilter.push(DeepCopy(key))
-        } else if (key.meta.menuType === 2) {
-          perFilter.push(DeepCopy(key))
-        }
-      }
-      useStore.setRouterData(flatTree(routerFilter))
-      useStore.setMenuData(flatTree(menuFilter))
-      useStore.setperData(perFilter)
-      createRoutes()
-      // router.isReady().then(res => {//路由请求之后在刷新一下路由 防止权限变化之后 页面未变化
-      router.replace(router.currentRoute.value.fullPath)
-      // })
-    }, (error: ErrorInfo) => {
-      console.log('error', error);
-      createErrorModal({
-        title: '系统异常',
-        content: `${error.status}${error.statusText}`,
-      })
+  permissions({}, { timeout: 1000 }).then((res) => {
+    // 读取历史缓存路由
+    let useStore = useProfileStore()
+    // 清空旧路由
+    useStore.addRoutesList.forEach((element: Menu) => {
+      router.removeRoute(element.name)
     })
-  }, 1000);
+    // router.removeRoute('home')
+    // router.removeRoute('render')
+    // 后台数据分类
+    let routerFilter = []//路由
+    let menuFilter = []//菜单
+    let perFilter = []//权限
+    for (const key of res.data) {
+      // menuType 0是路由也是菜单 1 是路由不是菜单 2 按钮
+      if (key.meta.menuType === 0) {
+        menuFilter.push(key)
+        routerFilter.push(DeepCopy(key))
+      } else if (key.meta.menuType === 1) {
+        routerFilter.push(DeepCopy(key))
+      } else if (key.meta.menuType === 2) {
+        perFilter.push(DeepCopy(key))
+      }
+    }
+    useStore.setRouterData(flatTree(routerFilter))
+    useStore.setMenuData(flatTree(menuFilter))
+    useStore.setperData(perFilter)
+    createRoutes()
+    router.replace(router.currentRoute.value.fullPath)
+  }, (error: ErrorInfo) => {
+    console.log('error', error);
+    // createErrorModal({
+    //   title: '系统异常',
+    //   content: `${error.status}${error.statusText}`,
+    // })
+  })
 }
 // 挂载路由
 export const createRoutes = () => {

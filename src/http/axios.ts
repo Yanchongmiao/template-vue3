@@ -80,7 +80,6 @@ export class Vaxios {
             return this.AxiosInstance(config)
           })
         }
-
         if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {//判断是否是超时
           let ignore: ErrorInfo = {
             status: 4004,

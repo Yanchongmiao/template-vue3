@@ -95,9 +95,7 @@ export const createErrorModal = (opiions: MsgModalOptions) => {
 }
 export const createInfoModal = (opiions: MsgModalOptions) => {
   Modal.info({
-    // title: createVNode('b', { style: 'color:#303133;font-weight: 700;font-size: 16px' }, `${opiions.title}`),
     title: createVNode('b', { style: 'color:#303133;font-weight: 700;font-size: 16px' }, `${opiions.title}`),
-
     icon: h('span', {
       style: `float: left;margin:-6px  16px 0 0;font-size: 22px;color:#909399;`, class: `yc-iconfont ${opiions.iconClass || 'yc-icon-tishi1'} `
     }),
