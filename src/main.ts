@@ -7,12 +7,14 @@ import './assets/icons/iconfont.js'
 import { setopPinia } from './pinia';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import { getFullScreen } from './utils/utils';
 function bootstrap() {
     const app = createApp(App);
     setopPinia(app)
     setupStore(app)
     setRoute(app)
     app.use(Antd)
+    getFullScreen()
     app.mount('#app')
 } bootstrap()
 

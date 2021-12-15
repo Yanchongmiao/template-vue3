@@ -1,6 +1,11 @@
+import { useProfileStore } from '@/pinia/use'
+import screenfull from 'screenfull'
+import { createErrorMsg } from './message'
+// 数据类型
 const is = (val: any, type: string) => {
   return toString.call(val) == `[object ${type}]`
 }
+// 是否对象
 export const isObj = (val: any) => {
   return is(val, 'Object')
 }
@@ -50,6 +55,8 @@ export const DeepCopy = (source: any) => {
 }
 /**
  * 平铺节点转换树结构
+ * @parentId 父节点id
+ * @id 自己的weiyiid
 **/
 export const flatTree = (treeArr: Array<any>) => {
   let map: Record<string, any> = []
@@ -69,4 +76,30 @@ export const flatTree = (treeArr: Array<any>) => {
     }
   }
   return arr
+}
+// 获取是否全屏状态
+export const getFullScreen = () => {
+  useProfileStore().$state.isFullScreen = screenfull.isFullscreen
+}
+/**
+ * 全屏
+**/
+export const openFullScreen = () => {
+
+  if (!screenfull.isEnabled) {
+    createErrorMsg({ title: '错误', content: '浏览器不支持全屏' })
+  } else {
+    screenfull.toggle();
+    screenfull.on('change', ((e) => {
+      getFullScreen()
+    }))
+  }
+}
+// 防抖
+export const Debounce = (fn: Function, delay: number) => {
+
+}
+// 节流
+export const throttle = (fn: { apply: (arg0: any, arg1: IArguments) => void }, delay: number) => {
+
 }

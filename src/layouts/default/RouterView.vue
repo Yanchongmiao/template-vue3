@@ -12,11 +12,11 @@
 			<Menu />
 		</a-layout-sider>
 		<a-layout>
-			<a-layout-header class="bg-white flex flex-a-c" style="padding: 0 0 0 10px">
-				<menu-unfold-outlined v-show="useMenu.$state.openMenu" class="trigger" @click="openClose" />
-				<menu-fold-outlined v-show="!useMenu.$state.openMenu" class="trigger" @click="openClose" />
-				<!-- 菜单导航 -->
-				<!-- <bread /> -->
+			<a-layout-header class="bg-white flex flex-a-c" style="padding:0 10px;height: 48px;">
+				<Header />
+			</a-layout-header>
+			<a-layout-header class="bg-white tabsBox flex">
+				<tabs />
 			</a-layout-header>
 			<a-layout-content
 				:style="{
@@ -33,15 +33,13 @@
 </template>
 <script lang="ts" setup>
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
-import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
 import bread from './bread/index.vue'
 import { useProfileStore } from '@/pinia/use'
+import tabs from './tabs/index.vue'
 import 'animate.css';
+import Header from './header/index.vue';
 let useMenu = useProfileStore()
-const openClose = () => {
-	useMenu.$state.openMenu = !useMenu.$state.openMenu
-}
 </script>
 
 <style lang="less">
@@ -55,7 +53,6 @@ const openClose = () => {
 	cursor: pointer;
 	transition: color 0.3s;
 }
-
 #components-layout-demo-custom-trigger .trigger:hover {
 	color: #1890ff;
 }
@@ -82,5 +79,11 @@ const openClose = () => {
 			transform: scale(1, 1);
 		}
 	}
+}
+.tabsBox {
+	padding: 2px 0 0 10px;
+	height: 30px;
+	border-top: 1px solid rgba(0, 0, 0, 0.06);
+	overflow: hidden;
 }
 </style>

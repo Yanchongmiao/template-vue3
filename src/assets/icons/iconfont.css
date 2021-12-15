@@ -1,8 +1,8 @@
 @font-face {
   font-family: "yc-iconfont"; /* Project id 2085566 */
-  src: url('iconfont.woff2?t=1639537597134') format('woff2'),
-       url('iconfont.woff?t=1639537597134') format('woff'),
-       url('iconfont.ttf?t=1639537597134') format('truetype');
+  src: url('iconfont.woff2?t=1639573866903') format('woff2'),
+       url('iconfont.woff?t=1639573866903') format('woff'),
+       url('iconfont.ttf?t=1639573866903') format('truetype');
 }
 
 .yc-iconfont {
@@ -11,6 +11,62 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.yc-icon-shuaxin:before {
+  content: "\e782";
+}
+
+.yc-icon-yunduanshuaxin:before {
+  content: "\ec60";
+}
+
+.yc-icon-shuaxin1:before {
+  content: "\e612";
+}
+
+.yc-icon-xianxingduoseshuaxin:before {
+  content: "\e614";
+}
+
+.yc-icon-settings:before {
+  content: "\e68a";
+}
+
+.yc-icon-icons-:before {
+  content: "\e66b";
+}
+
+.yc-icon-setting:before {
+  content: "\e632";
+}
+
+.yc-icon-profilesetting:before {
+  content: "\e88b";
+}
+
+.yc-icon-setting1:before {
+  content: "\e62a";
+}
+
+.yc-icon-Setting:before {
+  content: "\e75d";
+}
+
+.yc-icon-setting2:before {
+  content: "\e67d";
+}
+
+.yc-icon-qiehuanyuyan:before {
+  content: "\e769";
+}
+
+.yc-icon-quxiaoquanping_o:before {
+  content: "\eb98";
+}
+
+.yc-icon-quanping_o:before {
+  content: "\eb99";
 }
 
 .yc-icon-_caidanguanli:before {

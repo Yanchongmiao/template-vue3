@@ -25,6 +25,7 @@
 		"pinia-plugin-persist": "^0.0.92",
 		"postcss": "^7",
 		"qs": "^6.10.1",
+		"screenfull": "^6.0.0",
 		"style-loader": "^3.3.1",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
 		"vue": "^3.2.6",

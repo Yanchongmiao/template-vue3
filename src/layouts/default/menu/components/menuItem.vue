@@ -1,8 +1,5 @@
 <template>
   <el-menu-item :index="props.path">
-    <!-- <el-icon>
-      <setting />
-    </el-icon>-->
     <svg class="icon" aria-hidden="true" style="margin: -4px 4px 0 0 !important;">
       <use :xlink:href="`#${props.icon}`" />
     </svg>

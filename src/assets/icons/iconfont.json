@@ -6,6 +6,104 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "579551",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e782",
+      "unicode_decimal": 59266
+    },
+    {
+      "icon_id": "5961322",
+      "name": "云端刷新",
+      "font_class": "yunduanshuaxin",
+      "unicode": "ec60",
+      "unicode_decimal": 60512
+    },
+    {
+      "icon_id": "6539861",
+      "name": "刷新",
+      "font_class": "shuaxin1",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "19513310",
+      "name": "线性多色刷新",
+      "font_class": "xianxingduoseshuaxin",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "30480",
+      "name": "settings",
+      "font_class": "settings",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "1350469",
+      "name": "sq-setting",
+      "font_class": "icons-",
+      "unicode": "e66b",
+      "unicode_decimal": 58987
+    },
+    {
+      "icon_id": "2206519",
+      "name": "icon-setting",
+      "font_class": "setting",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "4638885",
+      "name": "个人设置",
+      "font_class": "profilesetting",
+      "unicode": "e88b",
+      "unicode_decimal": 59531
+    },
+    {
+      "icon_id": "9004960",
+      "name": "setting",
+      "font_class": "setting1",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "10343198",
+      "name": "Setting",
+      "font_class": "Setting",
+      "unicode": "e75d",
+      "unicode_decimal": 59229
+    },
+    {
+      "icon_id": "15838535",
+      "name": "setting",
+      "font_class": "setting2",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "20885024",
+      "name": "切换语言",
+      "font_class": "qiehuanyuyan",
+      "unicode": "e769",
+      "unicode_decimal": 59241
+    },
+    {
+      "icon_id": "5387942",
+      "name": "取消全屏_o",
+      "font_class": "quxiaoquanping_o",
+      "unicode": "eb98",
+      "unicode_decimal": 60312
+    },
+    {
+      "icon_id": "5387948",
+      "name": "全屏_o",
+      "font_class": "quanping_o",
+      "unicode": "eb99",
+      "unicode_decimal": 60313
+    },
+    {
       "icon_id": "5922282",
       "name": "140_菜单管理",
       "font_class": "_caidanguanli",

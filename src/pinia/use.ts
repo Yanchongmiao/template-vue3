@@ -12,6 +12,7 @@ export const useProfileStore = defineStore({
     menuActiveIndex: '',//当前激活menu路由
     breadData: Object,//bread信息
     originalData: [],//原数据
+    isFullScreen: false,//是否全屏
   }),
   getters: {
     // 获取菜单
