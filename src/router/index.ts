@@ -15,7 +15,7 @@ export function setRoute(app: App<Element>) {
     console.log('%cRouter已启动', 'color:powderblue');
 }
 router.beforeEach((to, from) => {
-    console.log(to, from);
+    // console.log(to, from);
     let user = useProfileStore()
     user.$state.menuActiveIndex = to.path
 

@@ -15,36 +15,37 @@ export const createMountOldRoute = async () => {
   }, 500);
 }
 // 接口请求获取路由信息
-const getPermiss = () => {
-  permissions({}, { timeout: 1000 }).then((res) => {
-    // 读取历史缓存路由
-    let useStore = useProfileStore()
-    // 清空旧路由
-    useStore.addRoutesList.forEach((element: Menu) => {
-      router.removeRoute(element.name)
-    })
-    // router.removeRoute('home')
-    // router.removeRoute('render')
-    // 后台数据分类
-    let routerFilter = []//路由
-    let menuFilter = []//菜单
-    let perFilter = []//权限
-    for (const key of res.data) {
-      // menuType 0是路由也是菜单 1 是路由不是菜单 2 按钮
-      if (key.meta.menuType === 0) {
-        menuFilter.push(key)
-        routerFilter.push(DeepCopy(key))
-      } else if (key.meta.menuType === 1) {
-        routerFilter.push(DeepCopy(key))
-      } else if (key.meta.menuType === 2) {
-        perFilter.push(DeepCopy(key))
+export const getPermiss = () => {
+  permissions({}, {}).then((res) => {
+    if (res.success) {
+      // 读取历史缓存路由
+      let useStore = useProfileStore()
+      useStore.$state.originalData = res.data
+      // 清空旧路由
+      useStore.addRoutesList.forEach((element: Menu) => {
+        router.removeRoute(element.name)
+      })
+      // 后台数据分类
+      let routerFilter = []//路由
+      let menuFilter = []//菜单
+      let perFilter = []//权限
+      for (const key of res.data) {
+        // menuType 0是路由也是菜单 1 是路由不是菜单 2 按钮
+        if (key.meta.menuType === 0) {
+          menuFilter.push(key)
+          routerFilter.push(DeepCopy(key))
+        } else if (key.meta.menuType === 1) {
+          routerFilter.push(DeepCopy(key))
+        } else if (key.meta.menuType === 2) {
+          perFilter.push(key)
+        }
       }
+      useStore.setRouterData(flatTree(routerFilter))
+      useStore.setMenuData(flatTree(menuFilter))
+      useStore.setperData(perFilter)
+      createRoutes()
+      router.replace(router.currentRoute.value.fullPath)
     }
-    useStore.setRouterData(flatTree(routerFilter))
-    useStore.setMenuData(flatTree(menuFilter))
-    useStore.setperData(perFilter)
-    createRoutes()
-    router.replace(router.currentRoute.value.fullPath)
   }, (error: ErrorInfo) => {
     console.log('error', error);
     // createErrorModal({
@@ -74,7 +75,7 @@ export const createRoutes = () => {
       router.addRoute('home', i as unknown as RouteRecordRaw)
     }
   })
-  useStore.setTreeList(treeMap)
+  // useStore.setTreeList(treeMap)
 }
 // 挂载前生成路由信息
 const addRo = (routeList: Array<{}>) => {

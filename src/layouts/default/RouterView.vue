@@ -12,17 +12,11 @@
 			<Menu />
 		</a-layout-sider>
 		<a-layout>
-			<a-layout-header class="bg-white" style=" padding: 0 0 0 10px">
-				<menu-unfold-outlined
-					v-if="useMenu.$state.openMenu"
-					class="trigger"
-					@click="() => (useMenu.$state.openMenu = !useMenu.$state.openMenu)"
-				/>
-				<menu-fold-outlined
-					v-else
-					class="trigger"
-					@click="() => (useMenu.$state.openMenu = !useMenu.$state.openMenu)"
-				/>
+			<a-layout-header class="bg-white flex flex-a-c" style="padding: 0 0 0 10px">
+				<menu-unfold-outlined v-show="useMenu.$state.openMenu" class="trigger" @click="openClose" />
+				<menu-fold-outlined v-show="!useMenu.$state.openMenu" class="trigger" @click="openClose" />
+				<!-- 菜单导航 -->
+				<!-- <bread /> -->
 			</a-layout-header>
 			<a-layout-content
 				:style="{
@@ -32,7 +26,7 @@
 					minHeight: '280px',
 				}"
 			>
-				<router-view></router-view>
+				<router-view class="animate__animated animate__fadeInRight"></router-view>
 			</a-layout-content>
 		</a-layout>
 	</a-layout>
@@ -41,9 +35,13 @@
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import { computed, ref } from 'vue'
 import Menu from './menu/index.vue'
-import { http } from '../../http'
+import bread from './bread/index.vue'
 import { useProfileStore } from '@/pinia/use'
+import 'animate.css';
 let useMenu = useProfileStore()
+const openClose = () => {
+	useMenu.$state.openMenu = !useMenu.$state.openMenu
+}
 </script>
 
 <style lang="less">

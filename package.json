@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@ant-design/icons-vue": "^6.0.1",
 		"@tailwindcss/postcss7-compat": "^2.0.2",
+		"animate.css": "^4.1.1",
 		"ant-design-vue": "^3.0.0-alpha.14",
 		"autoprefixer": "^9",
 		"axios": "^0.24.0",

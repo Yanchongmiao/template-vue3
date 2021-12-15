@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5922282",
+      "name": "140_菜单管理",
+      "font_class": "_caidanguanli",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "7274106",
+      "name": "角色管理",
+      "font_class": "jiaoseguanli",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "8729900",
+      "name": "用户管理",
+      "font_class": "yonghuguanli1",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "11409125",
+      "name": "角色管理",
+      "font_class": "jiaoseguanli1",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "24305572",
+      "name": "导航-系统设置",
+      "font_class": "xitongshezhi",
+      "unicode": "e7ea",
+      "unicode_decimal": 59370
+    },
+    {
       "icon_id": "37276",
       "name": "天猫提示-提醒",
       "font_class": "tixing",

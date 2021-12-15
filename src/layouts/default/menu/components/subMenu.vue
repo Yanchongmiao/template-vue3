@@ -1,21 +1,23 @@
 <template>
-  <el-sub-menu :index="props.subKey ? props.subKey : uuid()">
+  <el-sub-menu :index="props.subKey">
     <template #title>
-      <el-icon>
-        <location />
-      </el-icon>
-      <span style="width:76%" class="text-hidden-nowrap">{{ itemChildren.name }}</span>
+      <svg class="icon" aria-hidden="true" style="margin: -4px 4px 0 0 !important;">
+        <use :xlink:href="`#${props.icon}`" />
+      </svg>
+      <span style="width:74%" class="text-hidden-nowrap">{{ props.itemChildren.name }}</span>
     </template>
-    <template v-for="item in itemChildren.children" :key="item.path">
+    <template v-for="item in props.itemChildren.children" :key="item.path">
       <MenuItem
         v-if="(!item.children || item.children.length == 0) && (!item.hideMenu || item.hideMenu == null)"
         :name="item.name"
         :path="item.path"
+        :icon="item.meta.icon"
       />
       <subMenu
         v-if="item.children && item.children.length > 0"
         :itemChildren="item"
         :subKey="item.path"
+        :icon="item.meta.icon"
       />
     </template>
   </el-sub-menu>
@@ -40,13 +42,21 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 const props = defineProps({
-  itemChildren: Object,
-  subKey: String
+  itemChildren: {
+    type: Object,
+    required: true,
+    default: () => { children: [] }
+  },
+  icon: {
+    type: String,
+    required: true,
+    default: ''
+  },
+  subKey: String,
 }
 )
-const itemChildren: {} = ref(props.itemChildren)
-// const subKey = ref(props.subKey)
-
 </script>
-<style lang="less">
+<style lang="less" scoped>
+.icon {
+}
 </style>

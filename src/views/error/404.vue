@@ -1,10 +1,11 @@
 <template>
     <div>
-        <router-link to="/login">404页面</router-link>
-        <router-link to="/system">跳转/system</router-link>
+        <h1>404页面</h1>
+        <router-link to="/login">跳转登录</router-link>
+        <br />
+        <router-link to="/system/home">跳转首页</router-link>
         <br />
         <br />
-        <router-link to="/adadad">adad/system</router-link>
     </div>
 </template>
 

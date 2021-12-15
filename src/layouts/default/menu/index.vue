@@ -15,11 +15,13 @@
           v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
           :name="item.name"
           :path="item.path"
+          :icon="item.meta?.icon as string"
         />
         <subMenu
           v-if="item.children && item.children.length > 0"
           :itemChildren="item"
-          :subKey="item.path || '11'"
+          :subKey="item.path"
+          :icon="item.meta?.icon as string"
         />
       </template>
     </el-menu>
@@ -30,6 +32,8 @@ import { defineComponent, reactive, ref, toRefs, watch } from 'vue';
 import subMenu from './components/subMenu.vue'
 import itemMenu from './components/menuItem.vue'
 import { useProfileStore } from '@/pinia/use';
+import { Menu } from '@/type';
+import { DeepCopy } from '@/utils/utils';
 
 let useMenu = useProfileStore()
 </script>
