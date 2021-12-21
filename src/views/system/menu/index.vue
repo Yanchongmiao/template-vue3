@@ -1,5 +1,8 @@
 <template>
-  <div>菜单管理</div>
+  <div>
+    <div>菜单管理</div>
+    <input type="text" />
+  </div>
 </template>
 
 <script lang="ts" setup>

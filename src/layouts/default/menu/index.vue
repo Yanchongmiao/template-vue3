@@ -34,8 +34,8 @@ import itemMenu from './components/menuItem.vue'
 import { useProfileStore } from '@/pinia/use';
 import { Menu } from '@/type';
 import { DeepCopy } from '@/utils/utils';
-
 let useMenu = useProfileStore()
+
 </script>
 <style lang="less" scoped>
 .menuBox {

@@ -15,18 +15,31 @@
 			<a-layout-header class="bg-white flex flex-a-c" style="padding:0 10px;height: 48px;">
 				<Header />
 			</a-layout-header>
-			<a-layout-header class="bg-white tabsBox flex">
+			<a-layout-header class="bg-white tabsBox flex flex-j-sb">
 				<tabs />
 			</a-layout-header>
 			<a-layout-content
 				:style="{
-					margin: '24px 16px',
-					padding: '24px',
+					margin: '10px',
+					padding: '10px',
 					background: '#fff',
 					minHeight: '280px',
 				}"
 			>
-				<router-view class="animate__animated animate__fadeInRight"></router-view>
+				<!-- 1.切换到非缓存页面在切换回来时 缓存失效 -->
+				<!-- <router-view v-slot="{ Component }">
+					<keep-alive v-if="$route.meta.keepAlive">
+						<component :is="Component"></component>
+					</keep-alive>
+					<component :is="Component" v-if="!$route.meta.keepAlive"></component>
+				</router-view>-->
+				<!-- 2..vue文件不能使用setup语法题 -->
+				<!-- <router-view v-slot="{ Component }">
+					<keep-alive :include="[]">
+						<component :is="Component"></component>
+					</keep-alive>
+				</router-view>-->
+				<router-view></router-view>
 			</a-layout-content>
 		</a-layout>
 	</a-layout>
@@ -39,7 +52,30 @@ import { useProfileStore } from '@/pinia/use'
 import tabs from './tabs/index.vue'
 import 'animate.css';
 import Header from './header/index.vue';
+import { reactive, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 let useMenu = useProfileStore()
+console.log(useMenu.$state.keepAliveList);
+
+let includeList = reactive({
+	list: ['u']
+})
+let rout = useRoute()
+console.log(rout);
+// watch(
+// 	() => rout.meta,
+// 	() => {
+// 		if (rout.meta.keepAlive && includeList.indexOf(rout.meta.title) === -1) {
+// 			includeList.push(rout.meta.title);
+// 		}
+// 		console.log(includeList);
+
+// 	}
+// )
+
+function ref(arg0: string) {
+	throw new Error('Function not implemented.')
+}
 </script>
 
 <style lang="less">

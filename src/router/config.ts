@@ -44,6 +44,26 @@ export const staticRoutes = [
       }
     ]
   },
+  // 刷新路由
+  {
+    path: '/redirect',
+    name: 'redirect',
+    component: () => import(`@/layouts/default/RouterView.vue`),
+    meta: {
+      icon: 'ion:grid-outline',
+      title: 'redirect',
+    },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        name: 'redirectPath',
+        component: () => import('@/views/system/redirect/index.vue'),
+        meta: {
+          title: 'redirect',
+        },
+      },
+    ]
+  },
   {
     path: '/404',
     name: '404',

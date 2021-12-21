@@ -1,37 +1,41 @@
 <template>
   <a-tabs
-    v-model:activeKey="activeKey"
-    :tab-position="mode"
+    v-model:activeKey="useState.tabs.activekey"
+    tab-position="top"
     :style="{ height: '28px', padding: '0 0 0 0px' }"
-    @tabScroll="callback"
-    centered
+    @change="callback"
     :animated="true"
+    hideAdd
     type="editable-card"
+    @edit="deleteTabs"
   >
-    <a-tab-pane :closable="true" v-for="i in 30" :key="i" :tab="`Tab-${i}`" class="tabBox"></a-tab-pane>
+    <a-tab-pane
+      :closable="index !== 0"
+      v-for="(i,index) in useState.tabs.tagsData"
+      :key="i.path"
+      :tab="i.name"
+      class="tabBox"
+    ></a-tab-pane>
   </a-tabs>
   <div class="flex rightFun">
-    <div class="rightFunRefresh">
-      <svg class="icon" aria-hidden="true">
+    <div class="rightFunRefresh flex flex-j-c flex-a-c">
+      <svg class="icon" aria-hidden="true" @click="refreshRoute">
         <use xlink:href="#yc-icon-xianxingduoseshuaxin" />
       </svg>
     </div>
-    <div class="rightFunAllFun">
-      <a-dropdown>
+    <div class="rightFunAllFun flex flex-j-c flex-a-c">
+      <a-dropdown trigger="click">
         <a class="ant-dropdown-link" @click.prevent>
           <DownOutlined />
         </a>
         <template #overlay>
           <a-menu>
-            <a-menu-item>
-              <a href="javascript:;">1st menu item</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">2nd menu item</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">3rd menu item</a>
-            </a-menu-item>
+            <a-menu-item @click="refreshRoute">刷新加载</a-menu-item>
+            <a-menu-item :disabled="tabFun.closeOwn" @click="deleteown">关闭标签页</a-menu-item>
+            <a-menu-item :disabled="tabFun.closeLeft" @click="deleteleft">关闭左侧标签页</a-menu-item>
+            <a-menu-item :disabled="tabFun.closeRight" @click="deleteRight">关闭右侧标签页</a-menu-item>
+            <a-menu-item :disabled="tabFun.closeOther" @click="deleteOther">关闭其他标签页</a-menu-item>
+            <a-menu-item :disabled="tabFun.closeAll" @click="deleteAll">关闭全部标签页</a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -39,32 +43,119 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { DownOutlined } from '@ant-design/icons-vue';
-const mode = ref('top');
-const activeKey = ref('1');
-const callback = (val: string) => {
-  console.log(val);
-};
+import { DownOutlined } from '@ant-design/icons-vue'
+import { useProfileStore } from '@/pinia/use'
+import { effect, reactive, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+const use = useProfileStore()
+const useState = use.$state
+let tabData = useState.tabs.tagsData
+for (let i = 0; i < tabData.length; i++) {
+  useProfileStore().$state.tabs.mapIndex.set(tabData[i].path, i)
+}
+const route = useRoute()
+const router = useRouter()
+let tabFun = reactive({
+  closeOwn: false,//关闭自己
+  closeAll: false,//关闭全部
+  closeLeft: false,//关闭左侧
+  closeRight: false,//关闭右侧
+  closeOther: false//关闭其他
+})
+effect(() => {
+  // 按钮控制
+  {
+    tabFun.closeOwn = useState.tabs.activekey == useState.tabs.tagsData[0].path
+    tabFun.closeLeft = useState.tabs.activekey == useState.tabs.tagsData[1]?.path || tabFun.closeOwn
+    tabFun.closeRight = useState.tabs.activekey == useState.tabs.tagsData[useState.tabs.tagsData.length - 1]?.path
+    // 判断关闭其他
+    if (useState.tabs.tagsData.length < 2) {
+      tabFun.closeOther = true
+    } else if (useState.tabs.tagsData.length == 2) {
+      tabFun.closeOther = tabFun.closeOwn ? false : true
+    } else {
+      tabFun.closeOther = false
+    }
+    // 判断关闭全部
+    if (useState.tabs.tagsData.length < 2) {
+      tabFun.closeAll = true
+    } else if (useState.tabs.tagsData.length == 2) {
+      tabFun.closeAll = tabFun.closeOwn ? false : true
+    } else {
+      tabFun.closeAll = false
+    }
+  }
+});
+// 切换tabs
+const callback = (val: string | number) => {
+  router.push(String(val))
+}
+// 监听tabs点击事件
+const deleteTabs = (targetKey: string | number, action: string) => {
+  if (action == 'remove') {
+    use.deleteTabs(targetKey)
+  }
+}
+// 关闭全部
+const deleteAll = () => {
+  useState.tabs.activekey = useState.tabs.tagsData[0].path
+  useState.tabs.tagsData.splice(1, useState.tabs.tagsData.length - 1)
+}
+// 关闭左侧
+const deleteleft = () => {
+  let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey)
+  useState.tabs.tagsData.splice(1, i)
+  useState.tabs.activekey = useState.tabs.tagsData[0].path
+}
+// 关闭右侧
+const deleteRight = () => {
+  let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey)
+  useState.tabs.tagsData.splice(i + 1, useState.tabs.tagsData.length - 1)
+
+}
+// 关闭其他
+const deleteOther = () => {
+  useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey)
+}
+// tab删除自己
+const deleteown = () => {
+  use.deleteTabs(useState.tabs.activekey)
+}
+// 刷新当前路由
+const refreshRoute = () => {
+  router.push('/redirect/b')
+}
 </script>
 <style lang="less" scoped>
 ::v-deep(.ant-tabs-nav) {
   height: 28px;
-}
-::v-deep(.ant-tabs-tab) {
-  border: 1px solid #d9d9d9 !important;
-  margin-bottom: 2px;
-  .ant-tabs-tab-remove {
+  .ant-tabs-tab {
+    border: 1px solid #d9d9d9 !important;
     position: relative;
-    top: -2px;
-    opacity: 0;
-  }
-  &:hover {
+    margin-bottom: 2px;
     .ant-tabs-tab-remove {
-      opacity: 1;
+      position: absolute;
+      right: 7px;
+      top: -1px;
+      opacity: 0;
+    }
+    &:hover {
+      .ant-tabs-tab-remove {
+        opacity: 1;
+      }
+    }
+    .ant-tabs-tab-btn {
+      padding: 0 4px;
     }
   }
+  .ant-tabs-tab {
+    margin-left: 6px !important;
+  }
+  .ant-tabs-tab:nth-child(1) {
+    margin-left: 0px !important;
+  }
 }
+
 ::v-deep(.ant-tabs-tab-active) {
   background-color: #0960bd !important;
   .ant-tabs-tab-btn,
@@ -80,9 +171,19 @@ const callback = (val: string) => {
   &AllFun {
     width: 36px;
     height: 100%;
-    border: 1px solid black;
+    border: 1px solid #d9d9d9;
     text-align: center;
     line-height: 27px;
+  }
+  &Refresh {
+    border-right: none;
+    svg {
+      font-size: 16px;
+    }
+  }
+  .anticon-down {
+    color: #00000073;
+    font-size: 14px;
   }
 }
 </style>

@@ -22,25 +22,8 @@
     </template>
   </el-sub-menu>
 </template>
-<script setup lang="ts">import { ref } from 'vue';
+<script setup lang="ts">
 import MenuItem from './menuItem.vue'
-// import { ElMenu, ElIcon } from 'element-plus'
-// import { ElSubMenu, ElIcon } from 'element-plus'
-import { uuid } from '@/utils/utils'
-import { defineComponent, reactive, toRefs, watch } from 'vue';
-import {
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons-vue';
-import {
-  Location,
-  Document,
-  Menu as IconMenu,
-  Setting,
-} from '@element-plus/icons-vue'
 const props = defineProps({
   itemChildren: {
     type: Object,
@@ -56,7 +39,4 @@ const props = defineProps({
 }
 )
 </script>
-<style lang="less" scoped>
-.icon {
-}
-</style>
+<style lang="less" scoped></style>

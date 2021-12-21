@@ -7,12 +7,8 @@ import { DeepCopy, flatTree } from '@/utils/utils'
 import { RouteRecordRaw } from 'vue-router'
 import { staticRoutes } from './config'
 import { router } from './index'
-// 初始化路由 由于路由刷新会丢失 这里是获取的旧路由信息进行挂载
 export const createMountOldRoute = async () => {
-  createRoutes()//初始化路由
-  setTimeout(() => {
-    getPermiss()
-  }, 500);
+  getPermiss()
 }
 // 接口请求获取路由信息
 export const getPermiss = () => {
@@ -29,6 +25,7 @@ export const getPermiss = () => {
       let routerFilter = []//路由
       let menuFilter = []//菜单
       let perFilter = []//权限
+      let arrKeep: string[] = []//页面缓存
       for (const key of res.data) {
         // menuType 0是路由也是菜单 1 是路由不是菜单 2 按钮
         if (key.meta.menuType === 0) {
@@ -39,11 +36,16 @@ export const getPermiss = () => {
         } else if (key.meta.menuType === 2) {
           perFilter.push(key)
         }
+        if (key.meta.keepAlive) {
+          arrKeep.push(key.meta.title)
+        }
       }
+      useStore.$state.keepAliveList = arrKeep as never[]
       useStore.setRouterData(flatTree(routerFilter))
       useStore.setMenuData(flatTree(menuFilter))
       useStore.setperData(perFilter)
       createRoutes()
+      // 刷新当前路由看看新返回的权限
       router.replace(router.currentRoute.value.fullPath)
     }
   }, (error: ErrorInfo) => {
@@ -54,7 +56,7 @@ export const getPermiss = () => {
     // })
   })
 }
-// 挂载路由
+// 初始化路由 由于路由刷新会丢失 这里是获取的旧路由信息进行挂载
 export const createRoutes = () => {
   let useStore = useProfileStore()
   let roInfo = addRo(DeepCopy(useStore.routerData))
@@ -75,7 +77,8 @@ export const createRoutes = () => {
       router.addRoute('home', i as unknown as RouteRecordRaw)
     }
   })
-  // useStore.setTreeList(treeMap)
+  const use = useProfileStore()
+
 }
 // 挂载前生成路由信息
 const addRo = (routeList: Array<{}>) => {
@@ -90,9 +93,9 @@ const addRo = (routeList: Array<{}>) => {
       orderNo: item.orderNo,//排序
       roles: item.roles,//权限
       meta: {
-        icon: 'ion:grid-outline',
         title: item.name,
-        menuType: item.meta.menuType
+        menuType: item.meta.menuType,
+        keepAlive: item.meta.keepAlive || false
       },
       hideMenu: item.hideMenu || false,
       component: RenderComponent(item.component),

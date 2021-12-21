@@ -65,7 +65,7 @@
 首先在发起请求前调用 uuid() 生成唯一标识，在 requestOptions 配置中通过 id 传递过去 如果设置了忽略重复请求则忽略重复请求取消事件优先级最高，手动取消则无效 如果有重复请求取消的是上一个请求，以现在最新的请求为准
 在请求后边使用
 let time = setTimeout(() => {
-store.commit('axiosRequest/cancelSingle', { id: id, msg: '自定义取消 11' })||在 setup 中使用 useStore 调 vuex 事件
+store.commit('axiosRequest/cancelSingle', { id: id, msg: '自定义取消 11' })||在 setup 中使用 useStore 调 pinia 事件
 clearTimeout(time)
 }, 0);
 返回 error 信息

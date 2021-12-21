@@ -1,5 +1,6 @@
 import { defineStore, acceptHMRUpdate, mapStores } from 'pinia'
 import { Menu } from '@/type'
+import { router } from '@/router/index'
 export const useProfileStore = defineStore({
   id: 'useProfileStore',//唯一
   state: () => ({
@@ -13,6 +14,15 @@ export const useProfileStore = defineStore({
     breadData: Object,//bread信息
     originalData: [],//原数据
     isFullScreen: false,//是否全屏
+    keepAliveList: [],
+    //tab标签数据
+    tabs: {
+      tagsData: [
+        { name: "首页", path: "/system/home" },
+      ],
+      mapIndex: new Map(),//记录当前tab索引
+      activekey: '/system/home',
+    }
   }),
   getters: {
     // 获取菜单
@@ -31,16 +41,29 @@ export const useProfileStore = defineStore({
     },//平铺转换成结构树后的菜单数据
     setMenuData(data: any) {
       this.menuList = data
-    },//权限
+    },//权限数据
     setperData(data: any) {
       this.permissionList = data
     },
-    //记录当前的动态路由
-    // setTreeList(data: any) {
-    //   this.addRoutesList = data
-    // }
+    // 删除tabs
+    deleteTabs(val: string | number) {
+      let i = this.tabs.tagsData.findIndex(i => i.path == val)
+      if (this.tabs.tagsData[i].path == this.tabs.activekey) {
+        this.tabs.activekey = this.tabs.tagsData[i - 1].path
+        router.push(this.tabs.activekey)
+
+      }
+      this.tabs.tagsData.splice(i, 1)
+    },
+    // 关闭全部
+    deleteAll() {
+      this.tabs.tagsData.splice(1, this.tabs.tagsData.length - 1)
+    }
   },
   persist: {
     enabled: true,
+    strategies: [
+      { storage: sessionStorage, paths: ['userName', 'menuList', 'routerList', 'permissionList', 'addRoutesList', 'menuActiveIndex', 'breadData', 'originalData', 'isFullScreen', 'keepAliveList'] },
+    ],
   },
 })
