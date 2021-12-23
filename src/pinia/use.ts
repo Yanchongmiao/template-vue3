@@ -4,7 +4,6 @@ import { router } from '@/router/index'
 export const useProfileStore = defineStore({
   id: 'useProfileStore',//唯一
   state: () => ({
-    userName: 'xxx', // 这里我们定义了一个数据叫userName，用于存放我们的用户名 
     menuList: [],//菜单
     routerList: [],//路由
     permissionList: [],//权限

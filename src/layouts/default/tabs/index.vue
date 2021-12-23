@@ -19,7 +19,7 @@
   </a-tabs>
   <div class="flex rightFun">
     <div class="rightFunRefresh flex flex-j-c flex-a-c">
-      <svg class="icon" aria-hidden="true" @click="refreshRoute">
+      <svg class="icon pointer" aria-hidden="true" @click="refreshRoute">
         <use xlink:href="#yc-icon-xianxingduoseshuaxin" />
       </svg>
     </div>

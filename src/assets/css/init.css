@@ -48,11 +48,14 @@ em,
 var {
 	font-style: normal;
 }
+html,
 code,
 kbd,
 pre,
 samp {
-	font-family: couriernew, courier, monospace;
+	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+		Noto Sans, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', Segoe UI Symbol, 'Noto Color Emoji' couriernew,
+		courier, monospace;
 }
 small {
 	font-size: 12px;

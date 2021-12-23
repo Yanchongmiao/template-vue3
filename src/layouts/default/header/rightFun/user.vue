@@ -1,10 +1,9 @@
 <template>
   <div class="userBox h100 pointer lang">
-    <a-dropdown class="h100 flex flex-a-c flex-j-c">
+    <a-dropdown class="h100 flex flex-a-c flex-j-c" :trigger="['click']">
       <a class="ant-dropdown-link" @click.prevent>
         <a-avatar style="width: 24px;height: 24px;;">
           <template #icon>
-            <!-- <AntDesignOutlined /> -->
             <img src="	https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640" />
           </template>
         </a-avatar>
@@ -12,12 +11,42 @@
       </a>
       <template #overlay>
         <a-menu>
-          <a-menu-item key="sub1">文档</a-menu-item>
-          <a-menu-item key="sub2">退出登录</a-menu-item>
-          <a-sub-menu key="sub3" title="切换租户">
-            <a-menu-item>租户1</a-menu-item>
-            <a-menu-item>租户2</a-menu-item>
+          <a-menu-item key="sub1">
+            <div class="flex flex-a-c">
+              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
+                <use xlink:href="#yc-icon-gerenxinxi1" />
+              </svg>
+              <span>个人信息</span>
+            </div>
+          </a-menu-item>
+          <a-menu-item key="sub2">
+            <div class="flex flex-a-c">
+              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
+                <use xlink:href="#yc-icon-xiugaimima" />
+              </svg>
+              <span>修改密码</span>
+            </div>
+          </a-menu-item>
+          <a-sub-menu key="sub3">
+            <template #icon>
+              <div style="float: left;margin-top: 2px;">
+                <svg class="icon" aria-hidden="true" style="font-size: 14px;color: black;">
+                  <use xlink:href="#yc-icon-iconzh2" />
+                </svg>
+              </div>
+            </template>
+            <template #title>切换租户</template>
+            <a-menu-item>1</a-menu-item>
+            <a-menu-item>2</a-menu-item>
           </a-sub-menu>
+          <a-menu-item key="sub4">
+            <div class="flex flex-a-c">
+              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
+                <use xlink:href="#yc-icon-tuichuguanbi" />
+              </svg>
+              <span>退出登录</span>
+            </div>
+          </a-menu-item>
         </a-menu>
       </template>
     </a-dropdown>
@@ -40,4 +69,13 @@ import { DownOutlined, AntDesignOutlined } from '@ant-design/icons-vue';
 .userBox:hover {
   background-color: #f6f6f6;
 }
+</style>
+<style lang="less">
+// .ant-dropdown-menu-item .ant-dropdown-menu-submenu-expand-icon,
+// .ant-dropdown-menu-submenu-title .ant-dropdown-menu-submenu-expand-icon {
+//   .ant-dropdown-menu-submenu-arrow-icon {
+//     margin-top: 6px;
+//     float: left;
+//   }
+// }
 </style>

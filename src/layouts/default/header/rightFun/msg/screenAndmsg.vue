@@ -15,16 +15,26 @@
   </div>
   <div class="msgBox flex h100 flex-a-c flex-j-c pointer">
     <a-badge dot status="success">
-      <svg class="icon" aria-hidden="true">
+      <svg class="icon" aria-hidden="true" @click="openSetDrawer">
         <use xlink:href="#yc-icon-xiaoxi" />
       </svg>
     </a-badge>
+    <msgDrawer ref="comRef" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { openFullScreen } from '@/utils/utils'
 import { useProfileStore } from '@/pinia/use'
+import msgDrawer from './msgDrawer.vue'
+import { ref } from 'vue'
+const comRef = ref<HTMLElement | any>(null)
+
+const openSetDrawer = () => {
+  // comRef.value.visible =
+  comRef.value.showDrawer()
+
+}
 </script>
 
 <style scoped lang="less">

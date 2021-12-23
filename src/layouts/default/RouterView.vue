@@ -49,7 +49,6 @@ import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import Menu from './menu/index.vue'
 import { useProfileStore } from '@/pinia/use'
 import tabs from './tabs/index.vue'
-import 'animate.css';
 import Header from './header/index.vue';
 import { reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'

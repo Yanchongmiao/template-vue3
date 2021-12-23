@@ -38,3 +38,13 @@ export const responseErrInfo: {
   503: '暂时无法处理此请求',
   505: '不支持此版本协议',
 }
+// 是否显示tabs
+const isHidd = {
+  tabs: true,//tabs
+  full: true,//全屏
+  msg: true,//消息
+  language: true,//语言切换
+  settings: true,//设置
+  menuFold: true,//菜单折叠按钮
+  menuLogo: true,//菜单上部logo
+}

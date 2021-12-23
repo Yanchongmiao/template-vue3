@@ -26,11 +26,11 @@ export const staticRoutes = [
     children: [
       {
         path: 'userName',
-        name: 'userName',
+        name: '登录',
         component: () => import(`@/views/login/user.vue`),
         meta: {
           icon: 'ion:grid-outline',
-          title: 'userName',
+          title: '登录',
         },
       },
       {
@@ -39,7 +39,7 @@ export const staticRoutes = [
         component: () => import(`@/views/login/phone.vue`),
         meta: {
           icon: 'ion:grid-outline',
-          title: 'phone',
+          title: '登录',
         },
       }
     ]

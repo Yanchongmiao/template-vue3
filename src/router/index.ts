@@ -3,6 +3,7 @@ import { App } from '@vue/runtime-core'
 import { createRouter, createWebHashHistory, createWebHistory, RouteLocationNormalized, RouteRecordName, RouteRecordRaw } from 'vue-router'
 import { createMountOldRoute, createRoutes } from './initRouters'
 import { NProgressDone, NProgressStart } from '@/utils/NProgress'
+import { nextTick } from 'vue'
 export const router = createRouter({
     history: createWebHistory(),
     routes: [],
@@ -15,12 +16,17 @@ export async function setRoute(this: any, app: App<Element>) {
     app.use(router)
     console.log('%cRouter已启动', 'color:powderblue');
 }
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
     // 跳转时判断下个路由是否存在tabs中
     let noAddTabs = ['redirectPath', '404']
     if (!noAddTabs.includes(to.name as string)) {
         initTabs(to, from)
     }
+    await nextTick(() => {
+        document.title = (to.meta.title || 'App') as string
+
+    });
+
     NProgressStart()
     next()
 })

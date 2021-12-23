@@ -7,6 +7,7 @@ import './assets/icons/iconfont.js'
 import { setopPinia } from './pinia';
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
+import 'animate.css';
 import { getFullScreen } from './utils/utils';
 function bootstrap() {
     const app = createApp(App);
