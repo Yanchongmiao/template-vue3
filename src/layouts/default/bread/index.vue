@@ -1,36 +1,58 @@
 <template>
-  <a-breadcrumb style="margin-left: 16px;">
-    <!-- <a-breadcrumb-item>Ant Design Vue</a-breadcrumb-item> -->
-    <a-breadcrumb-item>{{ bread.name }}</a-breadcrumb-item>
-    {{ us.$state.breadData }}
-    <!-- <a-breadcrumb-item>
-      <a>{{ us.menuActiveIndex }}</a>
-      <template #overlay v-if="bread.children && bread.children.length > 0">
-        <a-menu>
-          <a-menu-item v-for="(item, key) in bread.children">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="http://www.alipay.com/"
-            >{{ item.name }}</a>
-          </a-menu-item>
-        </a-menu>
+  <div class="flex1">
+    <!-- <a-breadcrumb :routes="routes">
+      <template #itemRender="{ route, paths }">
+        <span v-if="routes.indexOf(route) === routes.length - 1">{{ route.breadcrumbName }}</span>
+        <router-link v-else :to="`${basePath}/${paths.join('/')}`">{{ route.breadcrumbName }}</router-link>
       </template>
-    </a-breadcrumb-item>-->
-    <!-- <a-breadcrumb-item>Button</a-breadcrumb-item> -->
-  </a-breadcrumb>
+    </a-breadcrumb>-->
+  </div>
 </template>
-
-<script lang="ts" setup>import { useProfileStore } from '@/pinia/use';
-import { Menu } from '@/type';
-const us = useProfileStore()
-// console.log(us.$state.breadData);
-let bread = us.$state.breadData
-// let activeRoute = us.$state.menuList.filter((i: Menu) => i.path == us.$state.menuActiveIndex)
-// console.log(activeRoute);
-
-  // menuList
+<script lang="ts">
+import { defineComponent, ref } from 'vue';
+interface Route {
+  path: string;
+  breadcrumbName: string;
+  children?: Array<{
+    path: string;
+    breadcrumbName: string;
+  }>;
+}
+export default defineComponent({
+  setup() {
+    const routes = ref<Route[]>([
+      {
+        path: 'index',
+        breadcrumbName: 'home',
+      },
+      {
+        path: 'first',
+        breadcrumbName: 'first',
+        children: [
+          {
+            path: '/general',
+            breadcrumbName: 'General',
+          },
+          {
+            path: '/layout',
+            breadcrumbName: 'Layout',
+          },
+          {
+            path: '/navigation',
+            breadcrumbName: 'Navigation',
+          },
+        ],
+      },
+      {
+        path: 'second',
+        breadcrumbName: 'second',
+      },
+    ]);
+    return {
+      basePath: '/components/breadcrumb',
+      routes,
+    };
+  },
+});
 </script>
 
-<style scoped lang="less">
-</style>

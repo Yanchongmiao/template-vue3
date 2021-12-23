@@ -74,7 +74,7 @@ let useMenu = useProfileStore()
 .is-active {
   background-color: #0960bd !important;
 }
-.text-hidden-nowrap {
-  font-size: 15px;
-}
+/* .text-hidden-nowrap {
+  font-size: 14px;
+} */
 </style>

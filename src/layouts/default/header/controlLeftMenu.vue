@@ -1,5 +1,5 @@
 <template>
-  <div class="flex1 flex flex-a-c">
+  <div class="flex flex-a-c">
     <menu-unfold-outlined v-show="useMenu.$state.openMenu" class="trigger" @click="openClose" />
     <menu-fold-outlined v-show="!useMenu.$state.openMenu" class="trigger" @click="openClose" />
   </div>

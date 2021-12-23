@@ -6,6 +6,97 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "55158",
+      "name": "右",
+      "font_class": "57",
+      "unicode": "e644",
+      "unicode_decimal": 58948
+    },
+    {
+      "icon_id": "643829",
+      "name": "锁定",
+      "font_class": "33",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "3722147",
+      "name": "左侧",
+      "font_class": "zuoce",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "3722148",
+      "name": "右侧",
+      "font_class": "youce",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "4942640",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "5651504",
+      "name": "退出、关闭",
+      "font_class": "tuichuguanbi",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "5925304",
+      "name": "全部",
+      "font_class": "quanbu",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "7587973",
+      "name": "右",
+      "font_class": "you",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "7587982",
+      "name": "左",
+      "font_class": "zuo",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "10465945",
+      "name": "向左隐藏",
+      "font_class": "xiangzuoyincang",
+      "unicode": "e7bc",
+      "unicode_decimal": 59324
+    },
+    {
+      "icon_id": "14166648",
+      "name": "左",
+      "font_class": "zuo1",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "15711143",
+      "name": "其他菜单",
+      "font_class": "qitacaidan",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "18310962",
+      "name": "中英文 英文",
+      "font_class": "zhongyingwen",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
       "icon_id": "579551",
       "name": "刷新",
       "font_class": "shuaxin",

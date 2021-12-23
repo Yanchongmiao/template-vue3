@@ -2,7 +2,7 @@
 	<a-layout>
 		<a-layout-sider v-model:collapsed="useMenu.$state.openMenu" :trigger="null" collapsible>
 			<div class="logo flex flex-a-c">
-				<img src="https://vvbin.cn/next/assets/logo.63028018.png" />
+				<img src="@/assets/images/logo.png" />
 				<transition name="container">
 					<p v-if="!useMenu.$state.openMenu" class="h100 flex1 flex flex-a-c text-white">
 						<b class="truncate ...">Admin</b>
@@ -47,7 +47,6 @@
 <script lang="ts" setup>
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 import Menu from './menu/index.vue'
-import bread from './bread/index.vue'
 import { useProfileStore } from '@/pinia/use'
 import tabs from './tabs/index.vue'
 import 'animate.css';
@@ -56,12 +55,7 @@ import { reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 let useMenu = useProfileStore()
 console.log(useMenu.$state.keepAliveList);
-
-let includeList = reactive({
-	list: ['u']
-})
 let rout = useRoute()
-console.log(rout);
 // watch(
 // 	() => rout.meta,
 // 	() => {
@@ -118,7 +112,7 @@ function ref(arg0: string) {
 }
 .tabsBox {
 	padding: 2px 0 0 10px;
-	height: 30px;
+	height: 34px;
 	border-top: 1px solid rgba(0, 0, 0, 0.06);
 	overflow: hidden;
 }

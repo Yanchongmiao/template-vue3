@@ -2,7 +2,7 @@
   <a-tabs
     v-model:activeKey="useState.tabs.activekey"
     tab-position="top"
-    :style="{ height: '28px', padding: '0 0 0 0px' }"
+    :style="{ height: '100%', padding: '0 0 0 0px' }"
     @change="callback"
     :animated="true"
     hideAdd
@@ -30,12 +30,19 @@
         </a>
         <template #overlay>
           <a-menu>
-            <a-menu-item @click="refreshRoute">刷新加载</a-menu-item>
-            <a-menu-item :disabled="tabFun.closeOwn" @click="deleteown">关闭标签页</a-menu-item>
-            <a-menu-item :disabled="tabFun.closeLeft" @click="deleteleft">关闭左侧标签页</a-menu-item>
-            <a-menu-item :disabled="tabFun.closeRight" @click="deleteRight">关闭右侧标签页</a-menu-item>
-            <a-menu-item :disabled="tabFun.closeOther" @click="deleteOther">关闭其他标签页</a-menu-item>
-            <a-menu-item :disabled="tabFun.closeAll" @click="deleteAll">关闭全部标签页</a-menu-item>
+            <a-menu-item
+              v-for="item in tabsList"
+              :disabled="isDisabled(item.name)"
+              :key="item.name"
+              @click="tabsFun(item.name)"
+            >
+              <div class="flex flex-a-c">
+                <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
+                  <use :xlink:href="item.icon" />
+                </svg>
+                <span>{{ item.name }}</span>
+              </div>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -47,13 +54,13 @@ import { DownOutlined } from '@ant-design/icons-vue'
 import { useProfileStore } from '@/pinia/use'
 import { effect, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { TabsEmnu, tabsList } from './data'
 const use = useProfileStore()
 const useState = use.$state
 let tabData = useState.tabs.tagsData
 for (let i = 0; i < tabData.length; i++) {
   useProfileStore().$state.tabs.mapIndex.set(tabData[i].path, i)
 }
-const route = useRoute()
 const router = useRouter()
 let tabFun = reactive({
   closeOwn: false,//关闭自己
@@ -117,7 +124,7 @@ const deleteRight = () => {
 const deleteOther = () => {
   useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey)
 }
-// tab删除自己
+// 关闭自己
 const deleteown = () => {
   use.deleteTabs(useState.tabs.activekey)
 }
@@ -125,10 +132,46 @@ const deleteown = () => {
 const refreshRoute = () => {
   router.push('/redirect/b')
 }
+// 判断当前下拉功能是否禁用
+const isDisabled = (name: string): Boolean => {
+  switch (name) {
+    case TabsEmnu.refresh:
+      return false
+    case TabsEmnu.closeTab:
+      return tabFun.closeOwn
+    case TabsEmnu.clostLeft:
+      return tabFun.closeLeft
+    case TabsEmnu.closeRight:
+      return tabFun.closeRight
+    case TabsEmnu.closeOther:
+      return tabFun.closeOther
+    case TabsEmnu.closeAll:
+      return tabFun.closeAll
+  }
+  return true
+}
+// 右侧下拉功能
+const tabsFun = (name: string) => {
+  switch (name) {
+    case TabsEmnu.refresh:
+      return refreshRoute()
+    case TabsEmnu.closeTab:
+      deleteown()
+    case TabsEmnu.clostLeft:
+      deleteleft()
+    case TabsEmnu.closeRight:
+      deleteRight()
+    case TabsEmnu.closeOther:
+      deleteOther()
+    case TabsEmnu.closeAll:
+      deleteAll()
+  }
+}
 </script>
 <style lang="less" scoped>
 ::v-deep(.ant-tabs-nav) {
-  height: 28px;
+  height: 100%;
+  margin: 0;
   .ant-tabs-tab {
     border: 1px solid #d9d9d9 !important;
     position: relative;
@@ -136,7 +179,11 @@ const refreshRoute = () => {
     .ant-tabs-tab-remove {
       position: absolute;
       right: 7px;
-      top: -1px;
+      // top: -1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: -2px;
       opacity: 0;
     }
     &:hover {
@@ -185,5 +232,10 @@ const refreshRoute = () => {
     color: #00000073;
     font-size: 14px;
   }
+}
+.ant-dropdown-menu-title-content {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 </style>

@@ -6,6 +6,7 @@ specifiers:
   '@tailwindcss/postcss7-compat': ^2.0.2
   '@types/mockjs': ^1.0.4
   '@types/node': ^16.11.7
+  '@types/nprogress': ^0.2.0
   '@types/qs': ^6.9.7
   '@vitejs/plugin-vue': ^1.6.1
   '@vue/compiler-sfc': ^3.2.6
@@ -19,6 +20,7 @@ specifiers:
   less: ^4.1.2
   less-loader: ^10.2.0
   mockjs: ^1.1.0
+  nprogress: ^0.2.0
   pinia: ^2.0.0-rc.10
   pinia-plugin-persist: ^0.0.92
   postcss: ^7
@@ -45,6 +47,7 @@ specifiers:
 dependencies:
   '@ant-design/icons-vue': 6.0.1_vue@3.2.26
   '@tailwindcss/postcss7-compat': 2.2.17
+  '@types/nprogress': 0.2.0
   animate.css: 4.1.1
   ant-design-vue: 3.0.0-alpha.15_ae87cbba5ec93a01f3fe1197df446ca3
   autoprefixer: 9.8.8
@@ -54,6 +57,7 @@ dependencies:
   less: 4.1.2
   less-loader: 10.2.0_less@4.1.2+webpack@5.65.0
   mockjs: 1.1.0
+  nprogress: 0.2.0
   pinia: 2.0.6_typescript@4.5.4+vue@3.2.26
   pinia-plugin-persist: 0.0.92_vue@3.2.26
   postcss: 7.0.39
@@ -496,6 +500,10 @@ packages:
   /@types/node/16.11.13:
     resolution: {integrity: sha512-eUXZzHLHoZqj1frtUetNkUetYoJ6X55UmrVnFD4DMhVeAmwLjniZhtBmsRiemQh4uq4G3vUra/Ws/hs9vEvL3Q==}
     dev: true
+
+  /@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+    dev: false
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
@@ -2351,6 +2359,10 @@ packages:
     dependencies:
       path-key: 3.1.1
     dev: true
+
+  /nprogress/0.2.0:
+    resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
+    dev: false
 
   /num2fraction/1.2.2:
     resolution: {integrity: sha1-b2gragJ6Tp3fpFZM0lidHU5mnt4=}
