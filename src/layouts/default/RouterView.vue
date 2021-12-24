@@ -39,7 +39,7 @@
 						<component :is="Component"></component>
 					</keep-alive>
 				</router-view>-->
-				<router-view></router-view>
+				<router-view class="animate__animated animate__bounceInDown"></router-view>
 			</a-layout-content>
 		</a-layout>
 	</a-layout>
@@ -110,7 +110,7 @@ function ref(arg0: string) {
 	}
 }
 .tabsBox {
-	padding: 2px 0 0 10px;
+	padding: 2px 10px;
 	height: 34px;
 	border-top: 1px solid rgba(0, 0, 0, 0.06);
 	overflow: hidden;

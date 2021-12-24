@@ -13,26 +13,22 @@
         <a-menu>
           <a-menu-item key="sub1">
             <div class="flex flex-a-c">
-              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
-                <use xlink:href="#yc-icon-gerenxinxi1" />
-              </svg>
+              <Svg svgName="#yc-icon-gerenxinxi1" :style="{ 'margin-right': '6px' }"></Svg>
+
               <span>个人信息</span>
             </div>
           </a-menu-item>
           <a-menu-item key="sub2">
             <div class="flex flex-a-c">
-              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
-                <use xlink:href="#yc-icon-xiugaimima" />
-              </svg>
+              <Svg svgName="#yc-icon-xiugaimima" :style="{ 'margin-right': '6px' }"></Svg>
+
               <span>修改密码</span>
             </div>
           </a-menu-item>
           <a-sub-menu key="sub3">
             <template #icon>
               <div style="float: left;margin-top: 2px;">
-                <svg class="icon" aria-hidden="true" style="font-size: 14px;color: black;">
-                  <use xlink:href="#yc-icon-iconzh2" />
-                </svg>
+                <Svg svgName="#yc-icon-iconzh2" :style="{ 'font-size': '14px', 'color': 'black' }"></Svg>
               </div>
             </template>
             <template #title>切换租户</template>
@@ -41,9 +37,7 @@
           </a-sub-menu>
           <a-menu-item key="sub4">
             <div class="flex flex-a-c">
-              <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
-                <use xlink:href="#yc-icon-tuichuguanbi" />
-              </svg>
+              <Svg svgName="#yc-icon-tuichuguanbi" :style="{ 'margin-right': '6px' }"></Svg>
               <span>退出登录</span>
             </div>
           </a-menu-item>

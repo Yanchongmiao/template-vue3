@@ -1,8 +1,6 @@
 <template>
   <div class="iconBox pointer h100 flex flex-a-c flex-j-c">
-    <svg class="icon" aria-hidden="true" @click="openSetDrawer">
-      <use xlink:href="#yc-icon-setting1" />
-    </svg>
+    <Svg svgName="#yc-icon-setting1" @click="openSetDrawer"></Svg>
     <setDrawer ref="comRef" />
   </div>
 </template>

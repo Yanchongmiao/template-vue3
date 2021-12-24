@@ -50,7 +50,6 @@ export const useProfileStore = defineStore({
       if (this.tabs.tagsData[i].path == this.tabs.activekey) {
         this.tabs.activekey = this.tabs.tagsData[i - 1].path
         router.push(this.tabs.activekey)
-
       }
       this.tabs.tagsData.splice(i, 1)
     },

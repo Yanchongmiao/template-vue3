@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-
+// import t from '../../t.vue'
 </script>
 
 <style scoped lang="less">

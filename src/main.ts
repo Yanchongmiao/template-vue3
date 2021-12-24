@@ -9,6 +9,7 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 import 'animate.css';
 import { getFullScreen } from './utils/utils';
+import t from '@/components/t.vue'
 function bootstrap() {
     const app = createApp(App);
     setopPinia(app)

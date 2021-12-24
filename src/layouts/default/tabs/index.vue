@@ -19,14 +19,12 @@
   </a-tabs>
   <div class="flex rightFun">
     <div class="rightFunRefresh flex flex-j-c flex-a-c">
-      <svg class="icon pointer" aria-hidden="true" @click="refreshRoute">
-        <use xlink:href="#yc-icon-xianxingduoseshuaxin" />
-      </svg>
+      <Svg svg-name="#yc-icon-xianxingduoseshuaxin" @click="refreshRoute"></Svg>
     </div>
     <div class="rightFunAllFun flex flex-j-c flex-a-c">
       <a-dropdown trigger="click">
         <a class="ant-dropdown-link" @click.prevent>
-          <DownOutlined />
+          <DownOutlined class />
         </a>
         <template #overlay>
           <a-menu>
@@ -37,9 +35,7 @@
               @click="tabsFun(item.name)"
             >
               <div class="flex flex-a-c">
-                <svg class="icon" aria-hidden="true" style="margin-right: 6px;">
-                  <use :xlink:href="item.icon" />
-                </svg>
+                <Svg :svgName="`${item.icon}`" :style="{ 'margin-right': '6px' }"></Svg>
                 <span>{{ item.name }}</span>
               </div>
             </a-menu-item>
@@ -55,6 +51,8 @@ import { useProfileStore } from '@/pinia/use'
 import { effect, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { TabsEmnu, tabsList } from './data'
+import Svg from '@/components/svg.vue'
+import ClassIcon from '@/components/classIcon.vue'
 const use = useProfileStore()
 const useState = use.$state
 let tabData = useState.tabs.tagsData
@@ -75,6 +73,7 @@ effect(() => {
     tabFun.closeOwn = useState.tabs.activekey == useState.tabs.tagsData[0].path
     tabFun.closeLeft = useState.tabs.activekey == useState.tabs.tagsData[1]?.path || tabFun.closeOwn
     tabFun.closeRight = useState.tabs.activekey == useState.tabs.tagsData[useState.tabs.tagsData.length - 1]?.path
+    tabFun.closeAll = useState.tabs.tagsData.length < 2 ? true : false
     // 判断关闭其他
     if (useState.tabs.tagsData.length < 2) {
       tabFun.closeOther = true
@@ -82,14 +81,6 @@ effect(() => {
       tabFun.closeOther = tabFun.closeOwn ? false : true
     } else {
       tabFun.closeOther = false
-    }
-    // 判断关闭全部
-    if (useState.tabs.tagsData.length < 2) {
-      tabFun.closeAll = true
-    } else if (useState.tabs.tagsData.length == 2) {
-      tabFun.closeAll = tabFun.closeOwn ? false : true
-    } else {
-      tabFun.closeAll = false
     }
   }
 });
@@ -110,9 +101,7 @@ const deleteAll = () => {
 }
 // 关闭左侧
 const deleteleft = () => {
-  let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey)
-  useState.tabs.tagsData.splice(1, i)
-  useState.tabs.activekey = useState.tabs.tagsData[0].path
+  useState.tabs.tagsData.splice(1, useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey) - 1)
 }
 // 关闭右侧
 const deleteRight = () => {
@@ -154,22 +143,29 @@ const isDisabled = (name: string): Boolean => {
 const tabsFun = (name: string) => {
   switch (name) {
     case TabsEmnu.refresh:
-      return refreshRoute()
+      refreshRoute()
+      break;
     case TabsEmnu.closeTab:
       deleteown()
+      break;
     case TabsEmnu.clostLeft:
       deleteleft()
+      break;
     case TabsEmnu.closeRight:
       deleteRight()
+      break;
     case TabsEmnu.closeOther:
       deleteOther()
+      break;
     case TabsEmnu.closeAll:
       deleteAll()
+      break;
   }
 }
 </script>
 <style lang="less" scoped>
 ::v-deep(.ant-tabs-nav) {
+  position: static;
   height: 100%;
   margin: 0;
   .ant-tabs-tab {
@@ -218,9 +214,11 @@ const tabsFun = (name: string) => {
   &AllFun {
     width: 36px;
     height: 100%;
-    border: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
     text-align: center;
     line-height: 27px;
+    margin-bottom: 2px;
   }
   &Refresh {
     border-right: none;
@@ -231,6 +229,11 @@ const tabsFun = (name: string) => {
   .anticon-down {
     color: #00000073;
     font-size: 14px;
+  }
+  .rightFunAllFun:hover {
+    .anticon {
+      color: #000000d9;
+    }
   }
 }
 .ant-dropdown-menu-title-content {

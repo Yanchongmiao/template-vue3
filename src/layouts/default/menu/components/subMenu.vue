@@ -1,9 +1,7 @@
 <template>
   <el-sub-menu :index="props.subKey">
     <template #title>
-      <svg class="icon" aria-hidden="true" style="margin: -4px 4px 0 0 !important;">
-        <use :xlink:href="`#${props.icon}`" />
-      </svg>
+      <Svg :svgName="`#${props.icon}`"></Svg>
       <span style="width:74%" class="text-hidden-nowrap">{{ props.itemChildren.name }}</span>
     </template>
     <template v-for="item in props.itemChildren.children" :key="item.path">
