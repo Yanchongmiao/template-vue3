@@ -1,6 +1,6 @@
 <template>
   <a-row>
-    <a-col :span="24" class="flex flex-j-sb" v-for="item in props.pageFun">
+    <a-col :span="24" class="flex flex-j-sb mb-14px" v-for="item in props.pageFun">
       <p>{{ item.name }}</p>
       <p>
         <a-input style="width: 130px;" v-model:value="item.data" v-if="item.type == 'input'"></a-input>

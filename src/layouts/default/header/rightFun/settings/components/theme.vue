@@ -1,14 +1,20 @@
 <template>
   <a-row class="themeBox flex-j-sb">
-    <a-col :span="5" class="box pointer"></a-col>
-    <a-col :span="5" class="box pointer"></a-col>
-    <a-col :span="5" class="box pointer"></a-col>
-    <a-col :span="5" class="box pointer"></a-col>
+    <a-tooltip v-for="(item,index) in navView" placement="bottom" :title="item.name">
+      <a-col
+        :span="5"
+        class="box pointer"
+        :class="{ active: useStore.navMode == index + 1 }"
+        @click="useStore.navMode = index + 1"
+      ></a-col>
+    </a-tooltip>
   </a-row>
 </template>
 
 <script lang="ts" setup>
-
+import { useProfileStore } from '@/pinia/use';
+import { navView } from './data';
+const useStore = useProfileStore()
 //如果使用 script setup 语法糖，应该使用 defineExpose 对象内部定义需要哪些变量需要暴露给上级组件 否则无法使用ref
 defineExpose({})
 </script>
@@ -55,6 +61,10 @@ defineExpose({})
   }
   .box:nth-child(4):after {
     .boxBeforeAfter(60%, 70%, 1, 30%, 40%, #f0f2f5) !important;
+  }
+  .box:hover,
+  .active {
+    border: 2px solid #0960bd;
   }
 }
 </style>

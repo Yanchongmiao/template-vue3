@@ -1,7 +1,7 @@
 <template>
   <div class="iconBox h-1/1 pointer flex flex-a-c flex-j-c">
     <a-tooltip
-      placement="topLeft"
+      placement="bottom"
       :title="!useProfileStore().isFullScreen ? '打开全屏' : '退出全屏'"
       @click="openFullScreen"
     >

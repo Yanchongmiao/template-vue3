@@ -197,6 +197,28 @@ export const pageAnimation: Array<FunSwitch> = [
     ]
   },
 ]
+export const navView = [
+  {
+    name: '左侧菜单模式',
+    index: 1,
+
+  },
+  {
+    name: '顶部菜单混合模式',
+    index: 2,
+
+  },
+  {
+    name: '顶部菜单模式',
+    index: 3,
+
+  },
+  {
+    name: '左侧菜单混合模式',
+    index: 4,
+
+  },
+]
 export interface FunSwitch {
   name: string,
   data: string | boolean | string,

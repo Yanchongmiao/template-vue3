@@ -21,7 +21,9 @@ export const useProfileStore = defineStore({
       ],
       mapIndex: new Map(),//记录当前tab索引
       activekey: '/system/home',
-    }
+    },
+    navMode: 1,
+
   }),
   getters: {
     // 获取菜单
