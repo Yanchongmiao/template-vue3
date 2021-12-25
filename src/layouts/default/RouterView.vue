@@ -4,7 +4,7 @@
 			<div class="logo flex flex-a-c">
 				<img src="@/assets/images/logo.png" />
 				<transition name="container">
-					<p v-if="!useMenu.$state.openMenu" class="h100 flex1 flex flex-a-c text-white">
+					<p v-if="!useMenu.$state.openMenu" class="h100 flex-1 flex flex-a-c text-white">
 						<b class="truncate ...">Admin</b>
 					</p>
 				</transition>
@@ -54,21 +54,7 @@ import { reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 let useMenu = useProfileStore()
 console.log(useMenu.$state.keepAliveList);
-let rout = useRoute()
-// watch(
-// 	() => rout.meta,
-// 	() => {
-// 		if (rout.meta.keepAlive && includeList.indexOf(rout.meta.title) === -1) {
-// 			includeList.push(rout.meta.title);
-// 		}
-// 		console.log(includeList);
 
-// 	}
-// )
-
-function ref(arg0: string) {
-	throw new Error('Function not implemented.')
-}
 </script>
 
 <style lang="less">

@@ -1,14 +1,7 @@
 <template>
-  <div class="flex1">
-    <!-- <a-breadcrumb :routes="routes">
-      <template #itemRender="{ route, paths }">
-        <span v-if="routes.indexOf(route) === routes.length - 1">{{ route.breadcrumbName }}</span>
-        <router-link v-else :to="`${basePath}/${paths.join('/')}`">{{ route.breadcrumbName }}</router-link>
-      </template>
-    </a-breadcrumb>-->
-  </div>
+  <div class="flex-1"></div>
 </template>
-<script lang="ts">
+<script lang="ts" setup>
 import { defineComponent, ref } from 'vue';
 interface Route {
   path: string;
@@ -18,41 +11,33 @@ interface Route {
     breadcrumbName: string;
   }>;
 }
-export default defineComponent({
-  setup() {
-    const routes = ref<Route[]>([
-      {
-        path: 'index',
-        breadcrumbName: 'home',
-      },
-      {
-        path: 'first',
-        breadcrumbName: 'first',
-        children: [
-          {
-            path: '/general',
-            breadcrumbName: 'General',
-          },
-          {
-            path: '/layout',
-            breadcrumbName: 'Layout',
-          },
-          {
-            path: '/navigation',
-            breadcrumbName: 'Navigation',
-          },
-        ],
-      },
-      {
-        path: 'second',
-        breadcrumbName: 'second',
-      },
-    ]);
-    return {
-      basePath: '/components/breadcrumb',
-      routes,
-    };
+const routes = ref<Route[]>([
+  {
+    path: 'index',
+    breadcrumbName: 'home',
   },
-});
+  {
+    path: 'first',
+    breadcrumbName: 'first',
+    children: [
+      {
+        path: '/general',
+        breadcrumbName: 'General',
+      },
+      {
+        path: '/layout',
+        breadcrumbName: 'Layout',
+      },
+      {
+        path: '/navigation',
+        breadcrumbName: 'Navigation',
+      },
+    ],
+  },
+  {
+    path: 'second',
+    breadcrumbName: 'second',
+  },
+]);
 </script>
 

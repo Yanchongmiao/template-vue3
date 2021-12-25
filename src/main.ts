@@ -1,23 +1,22 @@
-import { createApp, nextTick, toRaw } from 'vue'
+import { createApp } from 'vue'
 import App from './App.vue'
-import './style'
-import { setRoute } from './router';
-import { setupStore } from './store';
-import './assets/icons/iconfont.js'
-import { setopPinia } from './pinia';
 import Antd from 'ant-design-vue';
+import './assets/icons/iconfont.js'
+import './style'
 import 'ant-design-vue/dist/antd.css';
-import 'animate.css';
-import { getFullScreen } from './utils/utils';
 import 'virtual:windi.css'
 import 'virtual:windi-devtools'
+import { setRoute } from './router';
+import { setupStore } from './store';
+import { setopPinia } from './pinia';
+import { getFullScreen } from './utils/utils';
 function bootstrap() {
     const app = createApp(App);
     setopPinia(app)
+    getFullScreen()
     setupStore(app)
     setRoute(app)
     app.use(Antd)
-    getFullScreen()
     app.mount('#app')
 } bootstrap()
 

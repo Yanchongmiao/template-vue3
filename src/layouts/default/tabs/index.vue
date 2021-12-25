@@ -85,9 +85,7 @@ effect(() => {
   }
 });
 // 切换tabs
-const callback = (val: string | number) => {
-  router.push(String(val))
-}
+const callback = (val: string | number) => router.push(String(val))
 // 监听tabs点击事件
 const deleteTabs = (targetKey: string | number, action: string) => {
   if (action == 'remove') {
@@ -98,11 +96,10 @@ const deleteTabs = (targetKey: string | number, action: string) => {
 const deleteAll = () => {
   useState.tabs.activekey = useState.tabs.tagsData[0].path
   useState.tabs.tagsData.splice(1, useState.tabs.tagsData.length - 1)
+  router.push('/system/home')
 }
 // 关闭左侧
-const deleteleft = () => {
-  useState.tabs.tagsData.splice(1, useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey) - 1)
-}
+const deleteleft = () => useState.tabs.tagsData.splice(1, useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey) - 1)
 // 关闭右侧
 const deleteRight = () => {
   let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey)
@@ -110,17 +107,11 @@ const deleteRight = () => {
 
 }
 // 关闭其他
-const deleteOther = () => {
-  useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey)
-}
+const deleteOther = () => useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey)
 // 关闭自己
-const deleteown = () => {
-  use.deleteTabs(useState.tabs.activekey)
-}
+const deleteown = () => use.deleteTabs(useState.tabs.activekey)
 // 刷新当前路由
-const refreshRoute = () => {
-  router.push('/redirect/b')
-}
+const refreshRoute = () => router.push('/redirect/b')
 // 判断当前下拉功能是否禁用
 const isDisabled = (name: string): Boolean => {
   switch (name) {

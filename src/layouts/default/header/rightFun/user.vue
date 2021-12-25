@@ -1,6 +1,6 @@
 <template>
-  <div class="userBox h100 pointer lang">
-    <a-dropdown class="h100 flex flex-a-c flex-j-c" :trigger="['click']">
+  <div class="userBox pointer lang">
+    <a-dropdown class="h-1/1 flex flex-a-c flex-j-c" :trigger="['click']">
       <a class="ant-dropdown-link" @click.prevent>
         <a-avatar style="width: 24px;height: 24px;;">
           <template #icon>

@@ -3,7 +3,7 @@
         <div class="bg flex flex-col">
             <div class="leftHeaderText flex flex-j-c animate__animated animate__bounceInLeft">
                 <img src="@/assets/images/logo.png" />
-                <p class="m0">
+                <p class="m-0">
                     <b>Admin</b>
                 </p>
             </div>
@@ -15,12 +15,12 @@
 
                 <br />
                 <br />
-                <p class="m0">
+                <p class="m-0">
                     <b>开箱即用的中后台管理系统</b>
                 </p>
             </div>
         </div>
-        <div class="LoginFormBox animate__animated animate__bounceInRight flex flex-col flex1">
+        <div class="LoginFormBox animate__animated animate__bounceInRight flex flex-col flex-1">
             <div class="k"></div>
             <div class="box">
                 <h1>
@@ -29,13 +29,13 @@
                 <router-view />
                 <a-row class="flex flex-j-sb">
                     <a-col :span="7">
-                        <a-button class="w100">手机号登录</a-button>
+                        <a-button>手机号登录</a-button>
                     </a-col>
                     <a-col :span="7">
-                        <a-button class="w100">二维码登录</a-button>
+                        <a-button>二维码登录</a-button>
                     </a-col>
                     <a-col :span="7">
-                        <a-button class="w100">注册</a-button>
+                        <a-button>注册</a-button>
                     </a-col>
                 </a-row>
                 <!-- <router-link to="userName">用户名</router-link>-------

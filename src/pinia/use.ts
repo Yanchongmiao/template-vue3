@@ -61,7 +61,7 @@ export const useProfileStore = defineStore({
   persist: {
     enabled: true,
     strategies: [
-      { storage: sessionStorage, paths: ['userName', 'menuList', 'routerList', 'permissionList', 'addRoutesList', 'menuActiveIndex', 'breadData', 'originalData', 'isFullScreen', 'keepAliveList'] },
+      { storage: sessionStorage, paths: ['userName', 'menuList', 'routerList', 'permissionList', 'addRoutesList', 'openMenu', 'menuActiveIndex', 'breadData', 'originalData', 'isFullScreen', 'keepAliveList'] },
     ],
   },
 })

@@ -35,21 +35,20 @@
   </a-drawer>
 </template>
 <script lang="ts" setup>
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import { AppleOutlined, AndroidOutlined } from '@ant-design/icons-vue';
 const visible = ref<boolean>(false);
 const activeKey = ref('1')
 const afterVisibleChange = (bool: boolean) => {
   console.log('visible', bool);
 };
-
 const showDrawer = () => {
   visible.value = true;
 };
 defineExpose({
   showDrawer
 })
-</script>
+                                                                                                                                                                                                                                                                                                                                                                                                                                            </script>
 <style lang="less" scoped>
 ::v-deep(.ant-tabs-nav-wrap) {
   width: 100%;
