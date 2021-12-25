@@ -6,6 +6,7 @@ import vitePluginImp from 'vite-plugin-imp'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import WindiCSS from 'vite-plugin-windicss'
 module.exports = {
   base: "",
   plugins: [
@@ -16,6 +17,7 @@ module.exports = {
     Components({
       resolvers: [ElementPlusResolver()],
     }),
+    WindiCSS(),
     // viteMockServe({
     //   mockPath: "./src/mock", //mock文件地址
     //   localEnabled: true, // 开发打包开关

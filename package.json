@@ -11,11 +11,9 @@
 	},
 	"dependencies": {
 		"@ant-design/icons-vue": "^6.0.1",
-		"@tailwindcss/postcss7-compat": "^2.0.2",
 		"@types/nprogress": "^0.2.0",
 		"animate.css": "^4.1.1",
 		"ant-design-vue": "^3.0.0-alpha.14",
-		"autoprefixer": "^9",
 		"axios": "^0.24.0",
 		"css-loader": "^6.5.1",
 		"element-plus": "^1.2.0-beta.6",
@@ -25,11 +23,9 @@
 		"nprogress": "^0.2.0",
 		"pinia": "^2.0.0-rc.10",
 		"pinia-plugin-persist": "^0.0.92",
-		"postcss": "^7",
 		"qs": "^6.10.1",
 		"screenfull": "^6.0.0",
 		"style-loader": "^3.3.1",
-		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
 		"vue": "^3.2.6",
 		"vue-router": "^4.0.12",
 		"vuex": "4.0",
@@ -50,9 +46,11 @@
 		"vite": "^2.5.4",
 		"vite-plugin-imp": "^2.0.9",
 		"vite-plugin-mock": "^2.9.6",
+		"vite-plugin-windicss": "^1.6.1",
 		"vue-cli-plugin-tailwind": "~2.0.6",
 		"vue-tsc": "^0.2.2",
 		"webpack": "^5.62.2",
-		"webpack-cli": "^4.9.1"
+		"webpack-cli": "^4.9.1",
+		"windicss": "^3.4.0"
 	}
 }
