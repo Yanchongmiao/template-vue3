@@ -4,6 +4,16 @@
       <p>{{ item.name }}</p>
       <p>
         <a-input style="width: 130px;" v-model:value="item.data" v-if="item.type == 'input'"></a-input>
+        <a-input-number
+          style="width: 130px;"
+          v-model:value="settings.menu[item.data]"
+          v-if="item.type == 'input-number'"
+          :step="item.step"
+          :min="item.min"
+          :max="item.max"
+          :formatter="(value: Number) => item.initSuffix ? value == 0 ? item.initName : `${value}${item.suffix}` : `${value}${item.suffix}`"
+          :parser="(value: String) => value.replace(`${item.suffix}`, '')"
+        />
         <a-switch
           v-model:checked="item.data"
           :disabled="item.disabled"
@@ -21,15 +31,26 @@
         ></a-select>
       </p>
     </a-col>
+
+    <!-- <a-input-number
+      v-model:value="settings.menu.width"
+      :step="10"
+      :min="80"
+      :max="500"
+      :formatter="(value: Number) => `${value}px`"
+      :parser="(value: String) => value.replace('px', '')"
+    />-->
   </a-row>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref } from 'vue'
+import { settings } from '@/settings/projectSetting';
+import { defineProps, reactive, ref } from 'vue'
 import { FunSwitch } from './data'
 const props = defineProps<{
   pageFun: Array<FunSwitch>
 }>()
+
 </script>
 <style lang="less" scoped>
 </style>

@@ -1,7 +1,7 @@
 <template>
   <el-sub-menu :index="props.subKey">
     <template #title>
-      <Svg :svgName="`#${props.icon}`"></Svg>
+      <Svg :svgName="`#${props.icon}`" class="text-font-14px"></Svg>
       <span class="text-hidden-nowrap">{{ props.itemChildren.name }}</span>
     </template>
     <template v-for="item in props.itemChildren.children" :key="item.path">

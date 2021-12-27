@@ -14,6 +14,8 @@
 	<a-layout>
 		<!-- 如果为第三中模式则不显示左侧菜单 菜单放在顶部 -->
 		<a-layout-sider
+			:width="settings.menu.width"
+			class="aaa"
 			v-model:collapsed="useMenu.$state.openMenu"
 			:trigger="null"
 			collapsible
@@ -37,7 +39,7 @@
 			<a-layout-header
 				v-if="useMenu.navMode !== 2"
 				class="bg-white flex flex-a-c"
-				style="padding:0 10px;height: 48px;"
+				style="padding:0 0px;height: 48px;"
 			>
 				<Header />
 			</a-layout-header>
@@ -78,6 +80,7 @@ import tabs from './tabs/index.vue'
 import Header from './header/index.vue';
 import { reactive, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { settings } from '@/settings/projectSetting';
 let useMenu = useProfileStore()
 console.log(useMenu.$state.keepAliveList);
 
@@ -86,6 +89,19 @@ console.log(useMenu.$state.keepAliveList);
 <style lang="less">
 // 左侧菜单样式
 .el-menu-left {
+	.el-menu-item {
+		padding-left: 10px !important;
+	}
+	.el-sub-menu {
+		.el-sub-menu__title {
+			padding-left: 10px !important;
+		}
+		.el-menu {
+			.el-menu-item {
+				padding-left: 24px !important;
+			}
+		}
+	}
 	background-color: #001529 !important;
 	.el-menu-item:hover {
 		color: #fff;
@@ -119,6 +135,8 @@ console.log(useMenu.$state.keepAliveList);
 		.el-menu-item,
 		.el-sub-menu__title {
 			// background-color="#001529"
+			background-color: #001529;
+			// color: black !important;
 			padding: 0 !important;
 			margin: 0 !important;
 			display: flex;
@@ -138,6 +156,22 @@ console.log(useMenu.$state.keepAliveList);
 		.el-sub-menu__title {
 			color: #fff !important;
 			background-color: black !important;
+		}
+	}
+}
+
+// 多级菜单样式
+.el-menu--vertical {
+	.el-menu-item {
+		color: black;
+		svg {
+			color: black;
+		}
+	}
+	.is-active {
+		color: #fff;
+		svg {
+			color: #fff;
 		}
 	}
 }

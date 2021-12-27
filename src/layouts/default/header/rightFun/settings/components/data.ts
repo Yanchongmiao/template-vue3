@@ -92,15 +92,25 @@ export const pageFun: Array<FunSwitch> = [
   },
   {
     name: '自动锁屏',
-    type: 'input',
-    data: '0不锁屏',
+    type: 'input-number',
+    data: 'minute',
+    suffix: '分钟',
+    min: 0,
+    max: 24 * 60,
+    initSuffix: true,
+    initName: '0(不自动锁屏)',
   },
   {
     name: '菜单展开宽度',
-    type: 'input',
-    data: '210',
+    type: 'input-number',
+    data: 'width',
+    step: 10,
+    suffix: 'px',
+    min: 80,
+    max: 500,
   }
 ]
+// 页面配置
 export const pageView: Array<FunSwitch> = [
   {
     name: '面包屑',
@@ -170,6 +180,7 @@ export const pageView: Array<FunSwitch> = [
     disabled: false,
   },
 ]
+// 动画配置
 export const pageAnimation: Array<FunSwitch> = [
   {
     name: '灰色模顶部进度条式',
@@ -197,6 +208,7 @@ export const pageAnimation: Array<FunSwitch> = [
     ]
   },
 ]
+// 菜单模式
 export const navView = [
   {
     name: '左侧菜单模式',
@@ -221,9 +233,15 @@ export const navView = [
 ]
 export interface FunSwitch {
   name: string,
-  data: string | boolean | string,
+  data?: string | boolean | number,
   type: string,
   disabled?: boolean,
+  suffix?: string,
+  step?: number,
+  min?: number,
+  max?: number,
+  initSuffix?: boolean,
+  initName?: string,
   list?: Array<{
     label: string | number,
     value: string | number,
