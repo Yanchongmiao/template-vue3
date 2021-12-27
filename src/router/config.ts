@@ -59,7 +59,7 @@ export const staticRoutes = [
         name: 'redirectPath',
         component: () => import('@/views/system/redirect/index.vue'),
         meta: {
-          title: 'redirect',
+          title: '刷新中',
         },
       },
     ]

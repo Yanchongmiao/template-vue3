@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-a-c h-1/1">
-    <menu-unfold-outlined v-show="useMenu.$state.openMenu" class="trigger" @click="openClose" />
-    <menu-fold-outlined v-show="!useMenu.$state.openMenu" class="trigger" @click="openClose" />
+    <menu-unfold-outlined v-show="useMenu.$state.openMenu" class="text-xs-16px" @click="openClose" />
+    <menu-fold-outlined v-show="!useMenu.$state.openMenu" class="text-xs-16px" @click="openClose" />
   </div>
 </template>
 

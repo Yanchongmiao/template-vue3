@@ -1,10 +1,10 @@
 <template>
   <div class="menuBox">
     <el-menu
+      class="el-menu-left"
       active-text-color="#fff"
-      background-color="#001529"
-      :default-active="useMenu.$state.menuActiveIndex"
       text-color="#ffffffa6"
+      :default-active="useMenu.$state.menuActiveIndex"
       :unique-opened="true"
       :collapse="useMenu.$state.openMenu"
       :collapse-transition="false"

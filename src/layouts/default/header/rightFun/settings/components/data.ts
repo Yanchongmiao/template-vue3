@@ -213,11 +213,11 @@ export const navView = [
     index: 3,
 
   },
-  {
-    name: '左侧菜单混合模式',
-    index: 4,
+  // {
+  //   name: '左侧菜单混合模式',
+  //   index: 4,
 
-  },
+  // },
 ]
 export interface FunSwitch {
   name: string,

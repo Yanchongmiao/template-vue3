@@ -1,10 +1,32 @@
 <template>
+	<!-- 导航模式为顶部混合模式 -->
+	<a-row v-if="useMenu.navMode == 2">
+		<a-layout-header class="bg-white flex flex-a-c w-1/1" style="padding:0 10px 0 0;height: 48px;">
+			<div class="w-200px h-1/1 flex flex-a-c">
+				<img class="w-32px h-32px ml-7px mr-10px" src="@/assets/images/logo.png" />
+				<div class="flex flex-a-c">
+					<span class="text-xs-20px font-700" style="color: #0960bd;">Admin</span>
+				</div>
+			</div>
+			<Header />
+		</a-layout-header>
+	</a-row>
 	<a-layout>
-		<a-layout-sider v-model:collapsed="useMenu.$state.openMenu" :trigger="null" collapsible>
-			<div class="logo flex flex-a-c">
+		<!-- 如果为第三中模式则不显示左侧菜单 菜单放在顶部 -->
+		<a-layout-sider
+			v-model:collapsed="useMenu.$state.openMenu"
+			:trigger="null"
+			collapsible
+			v-if="useMenu.navMode !== 3"
+		>
+			<!-- 不为第二种模式的时候显示 -->
+			<div class="logo flex flex-a-c" v-if="useMenu.navMode !== 2">
 				<img src="@/assets/images/logo.png" />
 				<transition name="container">
-					<p v-if="!useMenu.$state.openMenu" class="h100 flex-1 flex flex-a-c text-white">
+					<p
+						v-if="!useMenu.$state.openMenu"
+						class="h100 flex-1 flex flex-a-c text-white pl-20px m-0 text-xs-18px font-700"
+					>
 						<b class="truncate ...">Admin</b>
 					</p>
 				</transition>
@@ -12,7 +34,11 @@
 			<Menu />
 		</a-layout-sider>
 		<a-layout>
-			<a-layout-header class="bg-white flex flex-a-c" style="padding:0 10px;height: 48px;">
+			<a-layout-header
+				v-if="useMenu.navMode !== 2"
+				class="bg-white flex flex-a-c"
+				style="padding:0 10px;height: 48px;"
+			>
 				<Header />
 			</a-layout-header>
 			<a-layout-header class="bg-white tabsBox flex flex-j-sb">
@@ -58,16 +84,41 @@ console.log(useMenu.$state.keepAliveList);
 </script>
 
 <style lang="less">
+// 左侧菜单样式
+.el-menu-left {
+	background-color: #001529 !important;
+	.el-menu-item:hover {
+		color: #fff;
+		background-color: transparent;
+	}
+	.el-sub-menu:hover {
+		.el-sub-menu__title {
+			color: #fff !important;
+			background-color: transparent;
+		}
+	}
+	.is-active,
+	.is-opened {
+		.el-menu li {
+			background-color: #0b2134;
+		}
+		.el-sub-menu__title {
+			background-color: #001528 !important;
+		}
+	}
+}
+// 折叠时样式
 .ant-layout-sider-collapsed {
-	width: 40px !important;
+	width: 48px !important;
 	flex: unset !important;
-	min-width: 40px !important;
+	min-width: 48px !important;
 	.el-menu--collapse {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
 		.el-menu-item,
 		.el-sub-menu__title {
+			// background-color="#001529"
 			padding: 0 !important;
 			margin: 0 !important;
 			display: flex;
@@ -78,6 +129,15 @@ console.log(useMenu.$state.keepAliveList);
 				justify-content: center !important;
 				align-items: center !important;
 			}
+		}
+	}
+
+	.is-active {
+		background-color: black !important;
+		border-left: 3px solid #0a60bd !important;
+		.el-sub-menu__title {
+			color: #fff !important;
+			background-color: black !important;
 		}
 	}
 }
@@ -105,16 +165,7 @@ console.log(useMenu.$state.keepAliveList);
 			height: 32px;
 		}
 		p {
-			margin: 0px;
-			font-size: 18px;
-			font-weight: 700;
 			transition: all 0.5s;
-			line-height: normal;
-			padding-left: 20px;
-			animation: fade-in; /*动画名称*/
-			animation-duration: 0.3s; /*动画持续时间*/
-			-webkit-animation: fade-in 0.3s; /*针对webkit内核*/
-			transform: scale(1, 1);
 		}
 	}
 }
