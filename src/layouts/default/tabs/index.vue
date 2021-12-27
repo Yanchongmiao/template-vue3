@@ -156,7 +156,7 @@ const tabsFun = (name: string) => {
 </script>
 <style lang="less" scoped>
 ::v-deep(.ant-tabs-nav) {
-  position: static;
+  position: relative;
   height: 100%;
   margin: 0;
   .ant-tabs-tab {

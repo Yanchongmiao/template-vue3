@@ -58,6 +58,29 @@ console.log(useMenu.$state.keepAliveList);
 </script>
 
 <style lang="less">
+.ant-layout-sider-collapsed {
+	width: 40px !important;
+	flex: unset !important;
+	min-width: 40px !important;
+	.el-menu--collapse {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		.el-menu-item,
+		.el-sub-menu__title {
+			padding: 0 !important;
+			margin: 0 !important;
+			display: flex;
+			justify-content: center;
+			div {
+				padding: 0px !important;
+				display: flex !important;
+				justify-content: center !important;
+				align-items: center !important;
+			}
+		}
+	}
+}
 .ant-layout {
 	height: 100%;
 }

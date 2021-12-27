@@ -72,7 +72,7 @@ import colorBox from './components/colorBox.vue'
 import funSwitch from './components/funSwitch.vue'
 import Svg from '@/components/svg.vue';
 import ClassIcon from '@/components/classIcon.vue';
-const visible = ref<boolean>(true);
+const visible = ref<boolean>(false);
 const afterVisibleChange = (bool: boolean) => {
   console.log('visible', bool);
 };
