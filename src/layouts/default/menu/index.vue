@@ -1,41 +1,74 @@
 <template>
   <div class="menuBox">
-    <el-menu
-      class="el-menu-left"
-      active-text-color="#fff"
-      text-color="#ffffffa6"
-      :default-active="useMenu.$state.menuActiveIndex"
-      :unique-opened="true"
-      :collapse="useMenu.$state.openMenu"
-      :collapse-transition="false"
-      router
+    <a-menu
+      v-model:selectedKeys="useMenu.tabs.activekey"
+      mode="inline"
+      theme="dark"
+      :open-keys="useMenu.menuOpenKeys"
+      @openChange="onOpenChange"
+      @click="menuItemPush"
     >
       <template v-for="item in useMenu.menuData" :key="item.path">
         <itemMenu
           v-if="(!item.children || item.children.length == 0) && (item.hideMenu || item.hideMenu == null)"
           :name="item.name"
           :path="item.path"
-          :icon="item.meta?.icon as string"
+          :icon="(item.meta?.icon as string)"
         />
-        <subMenu
+        <SubMenu
           v-if="item.children && item.children.length > 0"
           :itemChildren="item"
           :subKey="item.path"
-          :icon="item.meta?.icon as string"
+          :icon="(item.meta?.icon as string)"
         />
       </template>
-    </el-menu>
+    </a-menu>
   </div>
 </template>
 <script lang="ts" setup>
-import { defineComponent, reactive, ref, toRefs, watch } from 'vue';
-import subMenu from './components/subMenu.vue'
+import { defineComponent, effect, reactive, ref, toRefs, watch } from 'vue';
+import SubMenu from './components/subMenu.vue'
 import itemMenu from './components/menuItem.vue'
 import { useProfileStore } from '@/pinia/use';
 import { Menu } from '@/type';
 import { DeepCopy } from '@/utils/utils';
+import { useRouter } from 'vue-router';
 let useMenu = useProfileStore()
+const router = useRouter()
+const openState = ref(useMenu.openMenu)
+effect(() => {
+  openState.value = useMenu.openMenu
+})
+if (!useMenu.openMenu) {
+  let t = setTimeout(() => {
+    useMenu.setOpenMenuKeys()
+    clearTimeout(t)
+  }, 0);
+}
+watch(openState, (o, l) => {
+  if (!o && useMenu.menuOpenKeys.length == 0) useMenu.setOpenMenuKeys()
+})
+const state: State = reactive({
+  rootSubmenuKeys: [],//一级节点path
+});
+const menuList: Array<Menu> = useMenu.menuList
+for (let index = 0; index < menuList.length; index++) {
+  state.rootSubmenuKeys.push(menuList[index].path)
+}
+const onOpenChange = (openKeys: string[]) => {
+  console.log(openKeys);
 
+  const latestOpenKey = openKeys.find(key => useMenu.menuOpenKeys.indexOf(key as never) === -1);
+  if (state.rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+    useMenu.menuOpenKeys = openKeys as never[];
+  } else {
+    useMenu.menuOpenKeys = latestOpenKey ? [latestOpenKey] as never[] : [] as never[];
+  }
+};
+const menuItemPush = (item: { key: string; }) => router.push(item.key)
+interface State {
+  rootSubmenuKeys: Array<string>,
+}
 </script>
 <style lang="less" scoped>
 .menuBox {

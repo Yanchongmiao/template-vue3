@@ -77,8 +77,6 @@ export const createRoutes = () => {
       router.addRoute('home', i as unknown as RouteRecordRaw)
     }
   })
-  const use = useProfileStore()
-
 }
 // 挂载前生成路由信息
 const addRo = (routeList: Array<{}>) => {
