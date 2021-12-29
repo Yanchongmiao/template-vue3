@@ -1,9 +1,9 @@
 <template>
-  <el-sub-menu :index="props.subKey">
-    <template #title>
-      <Svg :svgName="`#${props.icon}`" class="text-font-14px"></Svg>
-      <span class="text-hidden-nowrap">{{ props.itemChildren.name }}</span>
+  <a-sub-menu :key="props.subKey">
+    <template #icon>
+      <ClassIcon class="text-font-14px" style="color: #ffffffb3;" :iconName="`${props.icon}`"></ClassIcon>
     </template>
+    <template #title>{{ props.itemChildren.name }}</template>
     <template v-for="item in props.itemChildren.children" :key="item.path">
       <MenuItem
         v-if="(!item.children || item.children.length == 0) && (!item.hideMenu || item.hideMenu == null)"
@@ -18,7 +18,7 @@
         :icon="item.meta.icon"
       />
     </template>
-  </el-sub-menu>
+  </a-sub-menu>
 </template>
 <script setup lang="ts">
 import MenuItem from './menuItem.vue'

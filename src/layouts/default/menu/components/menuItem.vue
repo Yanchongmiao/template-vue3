@@ -1,15 +1,13 @@
 <template>
-  <el-menu-item :index="props.path">
-    <Svg
-      :svgName="`#${props.icon}`"
-      class="text-font-14px"
-      :style="{ 'margin': '-4px 4px 0 0 !important' }"
-    ></Svg>
-    <!-- <span style="width:74%" class="text-hidden-nowrap">{{ props.name }}</span> -->
-    <template #title>{{ props.name }}</template>
-  </el-menu-item>
+  <a-menu-item :key="props.path">
+    <template #icon>
+      <ClassIcon class="text-font-14px" style="color: #ffffffb3;" :iconName="`${props.icon}`"></ClassIcon>
+    </template>
+    <span>{{ props.name }}</span>
+  </a-menu-item>
 </template>
 <script setup lang="ts">import { useProfileStore } from '@/pinia/use';
+import ClassIcon from '@/components/classIcon.vue';
 const props = defineProps({
   name: String || Number,
   path: String || Number,

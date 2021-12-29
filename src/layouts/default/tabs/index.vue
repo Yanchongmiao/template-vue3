@@ -1,8 +1,8 @@
 <template>
   <a-tabs
-    v-model:activeKey="useState.tabs.activekey"
+    v-model:activeKey="useState.tabs.tabsActive"
     tab-position="top"
-    :style="{ height: '100%', padding: '0 0 0 0px' }"
+    :style="{ height: '100%', padding: '0 0 0 0' }"
     @change="callback"
     :animated="true"
     hideAdd
@@ -51,14 +51,9 @@ import { useProfileStore } from '@/pinia/use'
 import { effect, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { TabsEmnu, tabsList } from './data'
-import Svg from '@/components/svg.vue'
-import ClassIcon from '@/components/classIcon.vue'
 const use = useProfileStore()
 const useState = use.$state
 let tabData = useState.tabs.tagsData
-for (let i = 0; i < tabData.length; i++) {
-  useProfileStore().$state.tabs.mapIndex.set(tabData[i].path, i)
-}
 const router = useRouter()
 let tabFun = reactive({
   closeOwn: false,//关闭自己
@@ -70,9 +65,9 @@ let tabFun = reactive({
 effect(() => {
   // 按钮控制
   {
-    tabFun.closeOwn = useState.tabs.activekey == useState.tabs.tagsData[0].path
-    tabFun.closeLeft = useState.tabs.activekey == useState.tabs.tagsData[1]?.path || tabFun.closeOwn
-    tabFun.closeRight = useState.tabs.activekey == useState.tabs.tagsData[useState.tabs.tagsData.length - 1]?.path
+    tabFun.closeOwn = useState.tabs.activekey[0] == useState.tabs.tagsData[0].path
+    tabFun.closeLeft = useState.tabs.activekey[0] == useState.tabs.tagsData[1]?.path || tabFun.closeOwn
+    tabFun.closeRight = useState.tabs.activekey[0] == useState.tabs.tagsData[useState.tabs.tagsData.length - 1]?.path
     tabFun.closeAll = useState.tabs.tagsData.length < 2 ? true : false
     // 判断关闭其他
     if (useState.tabs.tagsData.length < 2) {
@@ -85,8 +80,10 @@ effect(() => {
   }
 });
 // 切换tabs
-const callback = (val: string | number) => router.push(String(val))
-// 监听tabs点击事件
+const callback = (val: string | number) => {
+  router.push(String(val))
+}
+// 监听tabs点击事件 （删除按钮）
 const deleteTabs = (targetKey: string | number, action: string) => {
   if (action == 'remove') {
     use.deleteTabs(targetKey)
@@ -94,22 +91,22 @@ const deleteTabs = (targetKey: string | number, action: string) => {
 }
 // 关闭全部
 const deleteAll = () => {
-  useState.tabs.activekey = useState.tabs.tagsData[0].path
+  useState.tabs.activekey[0] = useState.tabs.tagsData[0].path
   useState.tabs.tagsData.splice(1, useState.tabs.tagsData.length - 1)
   router.push('/system/home')
 }
 // 关闭左侧
-const deleteleft = () => useState.tabs.tagsData.splice(1, useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey) - 1)
+const deleteleft = () => useState.tabs.tagsData.splice(1, useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey[0]) - 1)
 // 关闭右侧
 const deleteRight = () => {
-  let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey)
+  let i = useState.tabs.tagsData.findIndex(i => i.path == useState.tabs.activekey[0])
   useState.tabs.tagsData.splice(i + 1, useState.tabs.tagsData.length - 1)
 
 }
 // 关闭其他
-const deleteOther = () => useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey)
+const deleteOther = () => useState.tabs.tagsData = useState.tabs.tagsData.filter(i => i.path == useState.tabs.tagsData[0].path || i.path == useState.tabs.activekey[0])
 // 关闭自己
-const deleteown = () => use.deleteTabs(useState.tabs.activekey)
+const deleteown = () => use.deleteTabs(useState.tabs.activekey[0])
 // 刷新当前路由
 const refreshRoute = () => router.push('/redirect/b')
 // 判断当前下拉功能是否禁用
