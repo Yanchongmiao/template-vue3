@@ -4,7 +4,7 @@
       <a class="ant-dropdown-link" @click.prevent>
         <a-avatar style="width: 24px;height: 24px;;">
           <template #icon>
-            <img src="	https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640" />
+            <img src="@/assets/images/use.jpeg" />
           </template>
         </a-avatar>
         <span>&nbsp;&nbsp; 超级管理员</span>

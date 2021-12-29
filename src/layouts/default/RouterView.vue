@@ -23,7 +23,7 @@
 			style="background: #fff; padding: 0"
 			class="flex h-48px"
 		>
-			<div class="logo flex flex-a-c w-210px">
+			<div class="logo logoHover flex flex-a-c w-210px pointer" @click="homePush">
 				<img class="w-32px h-32px ml-7px mr-10px" src="@/assets/images/logo.png" />
 				<transition name="container">
 					<p class="truncate text-16px font-700 text-blue-500">
@@ -77,7 +77,7 @@
 							<router-view class="animate__animated animate__bounceInDown"></router-view>
 						</div>
 					</a-layout-content>
-					<a-layout-footer style="text-align: center">Ant Design ©2018 Created by Ant UED</a-layout-footer>
+					<a-layout-footer style="text-align: center">Ant Design ©2021 Created by Ant UED</a-layout-footer>
 				</a-row>
 			</a-layout>
 		</a-layout>
@@ -89,8 +89,12 @@ import Header from './header/index.vue';
 import tabs from './tabs/index.vue'
 import { useProfileStore } from '@/pinia/use';
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 let useMenu = useProfileStore()
-
+const router = useRouter()
+const homePush = () => {
+	router.push('/system/home')
+}
 </script>
 <style lang="less" scoped>
 .ant-layout-sider-children {
@@ -106,6 +110,12 @@ let useMenu = useProfileStore()
 		p {
 			transition: all 0.5s;
 		}
+	}
+}
+.logoHover {
+	&:hover {
+		background-color: #f6f6f6;
+		transition: all 0.5s;
 	}
 }
 </style>

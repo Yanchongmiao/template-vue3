@@ -3,6 +3,7 @@
     <a-menu
       v-model:selectedKeys="useMenu.tabs.activekey"
       mode="inline"
+      class="leftMenu"
       theme="dark"
       :open-keys="useMenu.menuOpenKeys"
       @openChange="onOpenChange"
@@ -72,7 +73,7 @@ interface State {
 </script>
 <style lang="less" scoped>
 .menuBox {
-  width: 99%;
+  width: 100%;
   height: 90%;
   // overflow-y: auto !important;
   overflow-y: auto !important;

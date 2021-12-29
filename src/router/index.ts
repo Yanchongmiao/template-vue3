@@ -26,7 +26,7 @@ router.beforeEach(async (to, from, next) => {
         initTabs(to, from)
     }
     await nextTick(() => {
-        document.title = (to.meta.title || 'App') as string
+        document.title = ((to.meta.title || 'App') + ' - Admin') as string
     });
     NProgressStart()
     next()

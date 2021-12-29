@@ -44,27 +44,27 @@ defineExpose({})
 </script>
 
 <style lang="less" scoped>
-.topMenu {
-  ::v-deep(.ant-menu) {
-    height: 100% !important;
-    border-bottom: none;
-    .ant-menu-item,
-    .ant-menu-submenu-title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .ant-menu-title-content {
-        height: 100%;
-        line-height: 32px;
-      }
-    }
-    .ant-menu-submenu {
-      height: 100%;
-      display: flex;
-    }
-    .ant-menu-item-icon {
-      color: black !important;
-    }
-  }
-}
+// .topMenu {
+//   ::v-deep(.ant-menu) {
+//     height: 100% !important;
+//     border-bottom: none;
+//     .ant-menu-item,
+//     .ant-menu-submenu-title {
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       .ant-menu-title-content {
+//         height: 100%;
+//         line-height: 32px;
+//       }
+//     }
+//     .ant-menu-submenu {
+//       height: 100%;
+//       display: flex;
+//     }
+//     .ant-menu-item-icon {
+//       color: black !important;
+//     }
+//   }
+// }
 </style>

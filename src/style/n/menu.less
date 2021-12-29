@@ -1,0 +1,115 @@
+[data-theme='light'] {
+	// 左侧菜单折叠状态
+	.ant-menu-vertical {
+		// menuItem 选中状态
+		.ant-menu-item-selected,
+		.ant-menu-submenu-selected {
+			border-left: 2px solid #0960bd !important;
+			background-color: black !important;
+			.ant-menu-item-icon {
+				color: #fff !important;
+			}
+		}
+	}
+	// 折叠状态下打开二级菜单弹出
+	.ant-menu-submenu-placement-rightTop {
+		.ant-menu-item:nth-child(1) {
+			margin-top: 0 !important;
+		}
+		.ant-menu-item:last-child {
+			margin-bottom: 0 !important;
+		}
+		// 选择的菜单
+		.ant-menu-item-selected {
+			background-color: #1890ff !important;
+			border: none !important;
+			.ant-menu-item-icon {
+				color: #fff !important;
+			}
+		}
+	}
+	// 展开状态
+	.ant-menu-inline {
+		li:nth-child(1) {
+			margin-top: 0;
+		}
+		.ant-menu-item-selected {
+			.ant-menu-item-icon {
+				color: #fff !important;
+			}
+		}
+		.ant-menu-submenu-selected {
+			.ant-menu-submenu-title {
+				.ant-menu-item-icon {
+					color: #fff !important;
+				}
+			}
+			.ant-menu {
+				.ant-menu-item-selected {
+					.ant-menu-item-icon {
+						color: #fff !important;
+					}
+				}
+			}
+		}
+	}
+	// 顶部菜单
+	.ant-menu-horizontal {
+		height: 100% !important;
+		border-bottom: none;
+		.ant-menu-item,
+		.ant-menu-submenu-title {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.ant-menu-title-content {
+				height: 100%;
+				line-height: 32px;
+			}
+		}
+		.ant-menu-submenu {
+			height: 100%;
+			display: flex;
+		}
+		.ant-menu-item-icon {
+			color: black !important;
+		}
+	}
+	// 顶部菜单二级弹出框样式
+	.ant-menu-submenu-placement-bottomLeft {
+		.ant-menu-submenu,
+		.ant-menu-item {
+			margin: 0 !important;
+			.ant-menu-item-icon,
+			i {
+				color: black !important;
+			}
+		}
+		// 一二级菜单样式
+		.ant-menu-item-selected,
+		.ant-menu-submenu-selected {
+			background-color: #0960bd !important;
+			color: #fff !important;
+			.ant-menu-submenu-title {
+				margin: 0;
+				.ant-menu-item-icon,
+				i,
+				&:hover {
+					color: #fff !important;
+				}
+				// &:hover {
+				// 	color: #fff !important;
+				// }
+			}
+			.ant-menu-item-icon {
+				color: #fff !important;
+			}
+		}
+		// 一级节点选中
+		.ant-menu-item-selected {
+			&:hover {
+				color: #fff !important;
+			}
+		}
+	}
+}
