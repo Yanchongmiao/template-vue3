@@ -74,7 +74,7 @@ interface State {
 <style lang="less" scoped>
 .menuBox {
   width: 100%;
-  height: 90%;
+  height: calc(100% - 48px);
   // overflow-y: auto !important;
   overflow-y: auto !important;
 }
@@ -89,26 +89,4 @@ interface State {
 }
 </style>
 <style lang="less">
-.el-menu {
-  width: 100% !important;
-  border: none;
-}
-.is-opened {
-  .el-sub-menu__title {
-    // background-color: red;
-  }
-  .el-menu {
-    // background-color: red;
-  }
-}
-.el-menu-item:hover {
-  color: #fff;
-  // background-color: #3e3f41;
-}
-.is-active {
-  background-color: #0960bd !important;
-}
-/* .text-hidden-nowrap {
-  font-size: 14px;
-} */
 </style>

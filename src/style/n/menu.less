@@ -1,11 +1,14 @@
-[data-theme='light'] {
+html {
 	// 左侧菜单折叠状态
 	.ant-menu-vertical {
+		background-color: @sider-dark-bg-color !important;
 		// menuItem 选中状态
 		.ant-menu-item-selected,
 		.ant-menu-submenu-selected {
 			border-left: 2px solid #0960bd !important;
-			background-color: black !important;
+			// background-color: black !important;
+			background-color: @sider-active-menu-bg-color !important;
+
 			.ant-menu-item-icon {
 				color: #fff !important;
 			}
@@ -21,95 +24,172 @@
 		}
 		// 选择的菜单
 		.ant-menu-item-selected {
-			background-color: #1890ff !important;
+			// background-color: #1890ff !important;
+			background-color: @sider-active-menu-bg-color !important;
+
 			border: none !important;
 			.ant-menu-item-icon {
 				color: #fff !important;
 			}
 		}
 	}
+	.ant-layout-sider {
+		background-color: @sider-dark-bg-color;
+	}
 	// 展开状态
 	.ant-menu-inline {
+		// height: 100%;
+		// menu 背景颜色
+		background-color: @sider-dark-bg-color !important;
 		li:nth-child(1) {
 			margin-top: 0;
 		}
+		// 字体颜色
+		.ant-menu-title-content {
+			color: rgba(255, 255, 255, 0.7);
+		}
+		// 一级菜单激活状态颜色
+		.ant-menu-item-active,
 		.ant-menu-item-selected {
-			.ant-menu-item-icon {
+			.ant-menu-title-content {
 				color: #fff !important;
 			}
 		}
-		.ant-menu-submenu-selected {
+		// .ant-menu-submenu-active {
+		// 	> .ant-menu-submenu-title {
+		// 		> .ant-menu-title-content {
+		// 			color: #fff !important;
+		// 		}
+		// 	}
+		// }
+		.ant-menu-submenu-active,
+		.ant-menu-submenu-selected,
+		.ant-menu-submenu-open {
 			.ant-menu-submenu-title {
-				.ant-menu-item-icon {
-					color: #fff !important;
+				.ant-menu-title-content {
+					color: #fff;
 				}
 			}
-			.ant-menu {
-				.ant-menu-item-selected {
-					.ant-menu-item-icon {
-						color: #fff !important;
-					}
-				}
+		}
+		// 二级菜单选中状态下字体颜色
+		.ant-menu-item-selected {
+			background-color: @sider-active-menu-bg-color !important;
+			.ant-menu-title-content {
+				color: #fff;
+			}
+		}
+		.ant-menu-submenu-selected {
+			.ant-menu-sub {
+				background-color: @sider-dark-lighten-bg-color !important;
 			}
 		}
 	}
 	// 顶部菜单
 	.ant-menu-horizontal {
 		height: 100% !important;
+		background-color: @header-dark-bg-color;
 		border-bottom: none;
+		// 一级、二级菜单的字体颜色图标颜色
 		.ant-menu-item,
 		.ant-menu-submenu-title {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			color: @header-dark-font-color;
 			.ant-menu-title-content {
+				color: @header-dark-font-color;
 				height: 100%;
-				line-height: 35px;
+				line-height: 50px;
+			}
+			.ant-menu-item-icon {
+				color: @header-dark-font-color !important;
 			}
 		}
+		// 移入背景颜色
+		.ant-menu-item,
 		.ant-menu-submenu {
 			height: 100%;
 			display: flex;
+			&:hover {
+				background-color: @header-dark-bg-hover-color;
+			}
 		}
-		.ant-menu-item-icon {
-			color: black !important;
+		// 一级二级节点选中
+		.ant-menu-item-selected,
+		.ant-menu-submenu-selected {
+			.ant-menu-title-content {
+				color: @top-menu-active-bg-color !important;
+			}
+			background-color: @header-dark-bg-hover-color;
+			.ant-menu-item-icon {
+				color: @top-menu-active-bg-color !important;
+			}
 		}
 	}
 	// 顶部菜单二级弹出框样式
 	.ant-menu-submenu-placement-bottomLeft {
+		// 弹出框背景颜色
+		> .ant-menu-sub {
+			background-color: @header-dark-bg-color !important;
+		}
+		// 一二级菜单背景样式、字体颜色、图标颜色
 		.ant-menu-submenu,
 		.ant-menu-item {
+			color: @header-dark-font-color !important;
+			background-color: @header-dark-bg-color !important;
 			margin: 0 !important;
 			.ant-menu-item-icon,
 			i {
-				color: black !important;
+				color: @header-dark-font-color !important;
+			}
+			&:hover {
+				color: @top-menu-active-bg-color !important;
 			}
 		}
-		// 一二级菜单样式
+		// 一二级菜单选中样式
 		.ant-menu-item-selected,
 		.ant-menu-submenu-selected {
-			background-color: #0960bd !important;
-			color: #fff !important;
+			background-color: @header-dark-bg-color !important;
+			color: @header-dark-font-color !important;
 			.ant-menu-submenu-title {
 				margin: 0;
 				.ant-menu-item-icon,
 				i,
 				&:hover {
-					color: #fff !important;
+					color: @top-menu-active-bg-color !important;
 				}
 				// &:hover {
 				// 	color: #fff !important;
 				// }
 			}
 			.ant-menu-item-icon {
-				color: #fff !important;
+				color: @header-dark-font-color !important;
 			}
 		}
 		// 一级节点选中
-		.ant-menu-item-selected {
+		.ant-menu-item-selected,
+		.ant-menu-submenu-selected {
+			background-color: @header-dark-bg-hover-color !important;
+			.ant-menu-title-content,
+			.ant-menu-item-icon {
+				color: @top-menu-active-bg-color !important;
+			}
 			&:hover {
-				color: #fff !important;
+				color: @header-dark-font-color !important;
 			}
 		}
+		.ant-menu-submenu-active,
+		.ant-menu-submenu-open {
+			background-color: @header-dark-bg-hover-color !important;
+			.ant-menu-title-content {
+				color: @top-menu-active-bg-color !important;
+			}
+			.ant-menu-item-icon {
+				color: @top-menu-active-bg-color !important;
+			}
+		}
+	}
+	.ant-layout-sider-trigger {
+		background-color: @sider-dark-lighten-bg-color;
 	}
 }

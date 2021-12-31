@@ -36,6 +36,9 @@ module.exports = {
     preprocessorOptions: {
       scss: {
         additionalData: '@import "./src/assets/style/main.scss";'
+      },
+      less: {
+        additionalData: '@import "./src/style/n/color.less";'
       }
     }
   },

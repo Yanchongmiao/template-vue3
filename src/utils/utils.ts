@@ -2,7 +2,7 @@ import { useProfileStore } from '@/pinia/use'
 import screenfull from 'screenfull'
 import { createErrorMsg } from './message'
 // 数据类型
-const is = (val: any, type: string) => {
+export const is = (val: any, type: string) => {
   return toString.call(val) == `[object ${type}]`
 }
 // 是否对象
@@ -85,7 +85,6 @@ export const getFullScreen = () => {
  * 全屏
 **/
 export const openFullScreen = () => {
-
   if (!screenfull.isEnabled) {
     createErrorMsg({ title: '错误', content: '浏览器不支持全屏' })
   } else {

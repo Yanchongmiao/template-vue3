@@ -53,7 +53,6 @@ import { useRoute, useRouter } from 'vue-router'
 import { TabsEmnu, tabsList } from './data'
 const use = useProfileStore()
 const useState = use.$state
-let tabData = useState.tabs.tagsData
 const router = useRouter()
 let tabFun = reactive({
   closeOwn: false,//关闭自己

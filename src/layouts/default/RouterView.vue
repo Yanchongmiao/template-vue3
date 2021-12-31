@@ -18,15 +18,11 @@
 			</div>
 			<Menu />
 		</a-layout-sider>
-		<a-layout-header
-			v-if="useMenu.navMode !== 1"
-			style="background: #fff; padding: 0"
-			class="flex h-48px"
-		>
+		<a-layout-header v-if="useMenu.navMode !== 1" class="flex h-48px headerBox p-0">
 			<div class="logo logoHover flex flex-a-c w-210px pointer" @click="homePush">
 				<img class="w-32px h-32px ml-7px mr-10px" src="@/assets/images/logo.png" />
 				<transition name="container">
-					<p class="truncate text-16px font-700 text-blue-500">
+					<p class="truncate text-16px font-700">
 						<b class="truncate ...">Admin</b>
 					</p>
 				</transition>
@@ -34,7 +30,7 @@
 			<Header />
 		</a-layout-header>
 		<a-layout class="flex flex-col">
-			<a-layout-header v-if="useMenu.navMode == 1" class="flex bg-white p-0 h-48px">
+			<a-layout-header v-if="useMenu.navMode == 1" class="flex headerBox p-0 h-48px">
 				<Header />
 			</a-layout-header>
 			<a-layout>
@@ -97,6 +93,12 @@ const homePush = () => {
 }
 </script>
 <style lang="less" scoped>
+.headerBox {
+	background-color: @header-dark-bg-color;
+	p {
+		color: @header-dark-font-color !important;
+	}
+}
 .ant-layout-sider-children {
 	.logo {
 		// width: 210px;
@@ -114,7 +116,7 @@ const homePush = () => {
 }
 .logoHover {
 	&:hover {
-		background-color: #f6f6f6;
+		background-color: @header-dark-bg-hover-color;
 		transition: all 0.5s;
 	}
 }

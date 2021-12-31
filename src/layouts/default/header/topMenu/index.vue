@@ -1,6 +1,6 @@
 <template>
-  <div class="flex-1 flex mb-10px" style="overflow: hidden;">
-    <div class="mt-5px topMenu">
+  <div class="flex-1 flex" style="overflow: hidden;">
+    <div class="topMenu flex-1">
       <a-menu v-model:selectedKeys="state.valueModel" mode="horizontal" @click="funMenu">
         <template v-for="item in useMenu.menuData" :key="item.path">
           <ItemMenu

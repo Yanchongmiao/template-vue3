@@ -1,5 +1,5 @@
 <template>
-  <svg :class="`icon pointer ${props.className}`" aria-hidden="true" :style="props.style">
+  <svg :class="`SvgIcon pointer ${props.className}`" aria-hidden="true" :style="props.style">
     <use :xlink:href="props.svgName" />
   </svg>
 </template>
@@ -26,4 +26,7 @@ const props = defineProps({
 </script>
 
 <style lang="less" scoped>
+// .SvgIcon {
+//   color: @color;
+// }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div class="h100 pointer flex flex-a-c flex-j-c lang">
+  <div class="h-1/1 text-18px px-10px pointer flex flex-a-c flex-j-c lang">
     <a-dropdown>
-      <Svg svgName="#yc-icon-qiehuanyuyan" :className="'h100'"></Svg>
+      <Svg svgName="#yc-icon-qiehuanyuyan" :className="'h-1/1'"></Svg>
       <template #overlay>
         <a-menu>
           <a-menu-item>简体中文</a-menu-item>
@@ -16,14 +16,14 @@
 </script>
 <style lang="less" scoped>
 .lang {
-  height: 100%;
-  font-size: 18px;
-  padding: 0 10px;
   &:hover {
-    background-color: #f6f6f6;
+    background-color: @header-dark-bg-hover-color;
   }
   .ant-dropdown-trigger {
     outline: none;
+  }
+  svg {
+    color: @header-dark-font-color;
   }
 }
 </style>

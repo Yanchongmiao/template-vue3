@@ -1,8 +1,8 @@
 @font-face {
   font-family: "yc-iconfont"; /* Project id 2085566 */
-  src: url('iconfont.woff2?t=1640340662766') format('woff2'),
-       url('iconfont.woff?t=1640340662766') format('woff'),
-       url('iconfont.ttf?t=1640340662766') format('truetype');
+  src: url('iconfont.woff2?t=1640842598702') format('woff2'),
+       url('iconfont.woff?t=1640842598702') format('woff'),
+       url('iconfont.ttf?t=1640842598702') format('truetype');
 }
 
 .yc-iconfont {
@@ -13,40 +13,36 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.yc-icon-yejian:before {
-  content: "\e687";
+.yc-icon-duigouxiao:before {
+  content: "\e8bd";
 }
 
-.yc-icon-tianqi_icon:before {
-  content: "\e63a";
+.yc-icon-dui:before {
+  content: "\e7c8";
+}
+
+.yc-icon-yejian2:before {
+  content: "\e66d";
+}
+
+.yc-icon-tianqiicon_qingtian_baitian:before {
+  content: "\e645";
+}
+
+.yc-icon-yejian:before {
+  content: "\e687";
 }
 
 .yc-icon-yejian1:before {
   content: "\e63b";
 }
 
-.yc-icon-yejianqing:before {
-  content: "\e63d";
-}
-
 .yc-icon-qingbaitian:before {
   content: "\e6ed";
 }
 
-.yc-icon-ziyuan1:before {
-  content: "\e640";
-}
-
 .yc-icon-yejianqing1:before {
   content: "\e664";
-}
-
-.yc-icon-1baitianqing:before {
-  content: "\e68d";
-}
-
-.yc-icon-2yejianqing:before {
-  content: "\e68e";
 }
 
 .yc-icon-yejianqing2:before {

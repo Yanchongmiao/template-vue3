@@ -32,17 +32,19 @@ const openSetDrawer = () => comRef.value.showDrawer()
   padding: 0 10px;
   svg {
     font-size: 20px;
+    color: @header-dark-font-color;
     outline: none;
   }
 }
 .iconBox:hover,
 .msgBox:hover {
-  background-color: rgb(246, 246, 246);
+  background-color: @header-dark-bg-hover-color;
 }
 .msgBox {
   padding: 0 10px;
   svg {
     font-size: 16px;
+    color: @header-dark-font-color;
   }
 }
 </style>

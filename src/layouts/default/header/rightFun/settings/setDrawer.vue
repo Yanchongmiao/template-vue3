@@ -21,11 +21,11 @@
     <a-divider>导航栏模式</a-divider>
     <theme></theme>
     <a-divider>系统主题</a-divider>
-    <colorBox :colorList="systemColor" />
+    <!-- <colorBox :colorList="systemColor" /> -->
     <a-divider>顶栏主题</a-divider>
-    <colorBox :colorList="headerColor" />
+    <colorBox :colorList="headerColor" @color="topMenuColor" VmodelName="topMenu" />
     <a-divider>菜单主题</a-divider>
-    <colorBox :colorList="menuColor" />
+    <colorBox :colorList="menuColor" VmodelName="leftMenu" @color="topMenuColor" />
     <a-divider>界面功能</a-divider>
     <funSwitch :pageFun="config.pageFun"></funSwitch>
     <a-divider>界面显示</a-divider>
@@ -55,7 +55,7 @@
   </a-drawer>
 </template>
 <script lang="ts" setup>
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref, watch } from 'vue';
 import { systemColor, headerColor, menuColor, pageFun, pageView, pageAnimation } from './components/data'
 const config = reactive({
   systemColor: systemColor,
@@ -79,6 +79,36 @@ const afterVisibleChange = (bool: boolean) => {
 const showDrawer = () => {
   visible.value = true;
 };
+watch(themeCheck, (val) => {
+  // console.log(val);
+  // if (!val) {
+  //   document.documentElement.style.setProperty('--header-bg-color', '#009688')
+  //   document.documentElement.style.setProperty('--header-bg-hover-color', '#0fa597')
+  //   document.documentElement.style.setProperty('--header-active-menu-bg-color', '#351c75')
+  //   document.documentElement.style.setProperty('--sider-dark-bg-color', '#273352')
+  //   document.documentElement.style.setProperty('--sider-dark-darken-bg-color', '#182443')
+  //   document.documentElement.style.setProperty('--sider-dark-lighten-bg-color', '#333f5e')
+  //   document.documentElement.style.setProperty('--header-font-color', '#fff')
+  // } else {
+  //   document.documentElement.style.setProperty('--header-bg-color', '#151515')
+  //   document.documentElement.style.setProperty('--header-bg-hover-color', '#242424')
+  //   document.documentElement.style.setProperty('--header-active-menu-bg-color', '#1890ff')
+  //   document.documentElement.style.setProperty('--sider-dark-bg-color', '#212121')
+  //   document.documentElement.style.setProperty('--sider-dark-darken-bg-color', '#121212')
+  //   document.documentElement.style.setProperty('--sider-dark-lighten-bg-color', '#2d2d2d')
+  //   document.documentElement.style.setProperty('--header-font-color', '#fff')
+  // }
+})
+const topMenuColor = (item: any) => {
+  console.log(item);
+
+  // for (const key in item) {
+  //   console.log(key);
+  //   item['--header-font-color'] = item['--header-font-color'] ? item['--header-font-color'] : '#fff'
+  //   document.documentElement.style.setProperty(key, item[key])
+
+  // }
+}
 defineExpose({
   showDrawer
 })

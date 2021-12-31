@@ -7,7 +7,7 @@
             <img src="@/assets/images/use.jpeg" />
           </template>
         </a-avatar>
-        <span>&nbsp;&nbsp; 超级管理员</span>
+        <span class="useName">&nbsp;&nbsp; 超级管理员</span>
       </a>
       <template #overlay>
         <a-menu>
@@ -59,9 +59,12 @@ import { DownOutlined, AntDesignOutlined } from '@ant-design/icons-vue';
   span {
     color: #000000d9 !important;
   }
+  .useName {
+    color: @header-dark-font-color !important;
+  }
 }
 .userBox:hover {
-  background-color: #f6f6f6;
+  background-color: @header-dark-bg-hover-color;
 }
 </style>
 <style lang="less">

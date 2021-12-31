@@ -23,7 +23,10 @@ const openSetDrawer = () => {
 .icon {
   font-size: 16px;
 }
+svg {
+  color: @header-dark-font-color;
+}
 .iconBox:hover {
-  background-color: #f6f6f6;
+  background-color: @header-dark-bg-hover-color;
 }
 </style>

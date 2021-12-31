@@ -1,9 +1,80 @@
 // 系统颜色
 export const systemColor = ['9, 96, 189', '0, 132, 244', '0, 150, 136', '83, 109, 254', '255, 92, 147', '238, 79, 18', '0, 150, 199', '156, 39, 176', '255, 152, 0']
-// 头部菜单颜色
-export const headerColor = ['255, 255, 255', '21, 21, 21', '0, 150, 136', '81, 114, 220', '1, 143, 251', '64, 158, 255', '231, 76, 60', '36, 41, 46', '57, 70, 100', '0, 21, 41', '56, 63, 69']
+// 顶部菜单颜色
+export const headerColor: Array<Color> = [
+  // '255, 255, 255', '21, 21, 21', '0, 150, 136', '81, 114, 220', '1, 143, 251', '64, 158, 255', '231, 76, 60', '36, 41, 46', '57, 70, 100', '0, 21, 41', '56, 63, 69'
+  {
+    '--header-bg-color': '#ffffff',
+    '--header-bg-hover-color': '#ffffff',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': 'black',
+  }, {
+    '--header-bg-color': '#151515',
+    '--header-bg-hover-color': '#242424',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#009688',
+    '--header-bg-hover-color': '#0fa597',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#5172DC',
+    '--header-bg-hover-color': '#6081eb',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#018ffb',
+    '--header-bg-hover-color': '#109eff',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#409eff',
+    '--header-bg-hover-color': '#4fadff',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#e74c3c',
+    '--header-bg-hover-color': '#f65b4b',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#24292e',
+    '--header-bg-hover-color': '#33383d',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#394664',
+    '--header-bg-hover-color': '#485573',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#001529',
+    '--header-bg-hover-color': '#0f2438',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  }, {
+    '--header-bg-color': '#383f45',
+    '--header-bg-hover-color': '#474e54',
+    '--header-active-menu-bg-color': '#0960bd',
+    '--header-font-color': '',
+  },
+]
 // 菜单颜色
-export const menuColor = ['0, 21, 41', '33, 33, 33', '39, 51, 82', '255, 255, 255', '25, 27, 36', '25, 26, 35', '48, 65, 86', '0, 22, 40', '40, 51, 62', '52, 64, 88', '56, 63, 69',]
+export const menuColor = [
+  {
+    '--sider-bg-color': '#28333E',
+    '--sider-active-menu-bg-color': '#0fa597',
+    '--sider-font-color': '#fff',
+    '--sider-dark-lighten-bg-color': '#343f4a'
+  },
+  {
+    '--sider-bg-color': 'red',
+    '--sider-active-menu-bg-color': '#414a52',
+    '--sider-font-color': '#fff',
+    '--sider-dark-lighten-bg-color': '#343f4a'
+  },
+]
 // 页面功能
 export const pageFun: Array<FunSwitch> = [
   {
@@ -231,6 +302,16 @@ export const navView = [
 
   // },
 ]
+export interface Color {
+  '--header-bg-color'?: string,
+  '--header-bg-hover-color'?: string,
+  '--header-active-menu-bg-color'?: string,
+  '--header-font-color'?: string,
+  '--sider-bg-color'?: string,
+  '--sider-active-menu-bg-color'?: string,
+  '--sider-font-color'?: string,
+  '--sider-dark-lighten-bg-color'?: string,
+}
 export interface FunSwitch {
   name: string,
   data?: string | boolean | number,
